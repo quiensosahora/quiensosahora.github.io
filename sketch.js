@@ -232,8 +232,9 @@ async function addNewPhrase(phrase) {
 async function shareButtonClicked() {
   if (!navigator.canShare) {
     saveCanvas("quiensosahora", "png")
-  } else if (navigator.canShare(shareData)) {
+  } else if (navigator.canShare("esto es una prueba")) {
     alert("navigator.canShare() supported. We can use navigator.share() to send the data.");
+    navigator.share("esto es una prueba");
   } else {
     alert("Specified data cannot be shared.");
   }
