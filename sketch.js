@@ -101,7 +101,7 @@ function createContainer() {
   saveButton.style('outline', 'none'); // Elimina el borde al hacer clic
   saveButton.style('box-shadow', 'none'); // Elimina la sombra
   saveButton.style('background', 'none'); 
-  saveButton.style('font-size', '34px'); // Tamaño del icono
+  saveButton.style('font-size', '34px'); 
   saveButton.style('color', 'white');
   saveButton.elt.innerHTML = '<i class="bi bi-save"></i>';
   saveButton.mousePressed(saveButtonClicked);  
