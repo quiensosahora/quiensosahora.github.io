@@ -88,7 +88,7 @@ function createContainer() {
   inputContainer.style('display', 'flex'); 
   inputContainer.style('flex-direction', 'row'); 
   inputContainer.style('align-items', 'center');
-  inputContainer.style('justify-content', 'center');
+  inputContainer.style('justify-content', 'space-between');
   
   // Calcula el tamaño máximo para el contenedor (75% del ancho de la ventana)
   let maxWidth = windowWidth * 0.75 + 'px';
