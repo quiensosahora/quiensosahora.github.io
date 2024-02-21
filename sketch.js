@@ -277,6 +277,8 @@ function createModal() {
   modalDiv.style('position', 'absolute');
   modalDiv.style('left', '50%');
   modalDiv.style('top', '50%');
+  modalDiv.style('max-height', '80%'); 
+  modalDiv.style('overflow-y', 'auto');
   modalDiv.style('transform', 'translate(-50%, -50%)');
   modalDiv.style('background-color', 'rgba(255, 255, 255, 0.9)'); 
   modalDiv.style('padding', '20px');
