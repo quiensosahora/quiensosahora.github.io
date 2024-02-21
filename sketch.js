@@ -115,7 +115,6 @@ function createContainer() {
   saveButton.style('background', 'none'); 
   saveButton.style('font-size', '34px'); 
   saveButton.style('color', 'white');
-  saveButton.style('margin', '0');
   saveButton.elt.innerHTML = '<i class="bi bi-save"></i>';
   saveButton.mousePressed(saveButtonClicked);  
   // Configura el evento para la tecla "Enter" en el input
