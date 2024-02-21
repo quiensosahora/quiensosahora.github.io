@@ -121,10 +121,10 @@ function createButtonBar() {
   // Crea container div
   let buttonContainer = createDiv('');
   buttonContainer.style('position', 'absolute');
-  buttonContainer.style('top', '97%');
+  buttonContainer.style('bottom', '3%');
   buttonContainer.style('left', '50%');
-  buttonContainer.style('transform', 'translate(-50%, -50%)');
-  buttonContainer.style('display', 'flex'); 
+  buttonContainer.style('transform', 'translateX(-50%)');
+  buttonContainer.style('display', 'flex');
   buttonContainer.style('align-items', 'center');
 
   // crea add button
@@ -143,10 +143,9 @@ function createButtonBar() {
   addButton.style('font-weight', 'bold');
   addButton.style('position', 'absolute');
   addButton.style('left', '50%');
-
   addButton.style('transform', 'translate(-50%, -50%)');
   addButton.elt.innerHTML = '<i class="bi bi-plus"></i>';
-  addButton.mousePressed(addButtonClicked);
+  addButton.mousePressed(addButtonClicked); 
 
   let shareButton = createButton('');
   shareButton.style('display', 'flex');
