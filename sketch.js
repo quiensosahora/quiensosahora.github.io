@@ -139,8 +139,8 @@ function createButtonBar() {
   addButton.style('display', 'flex');
   addButton.style('justify-content', 'center'); 
   addButton.style('align-items', 'center'); 
-  addButton.style('height', '50px');
-  addButton.style('width', '50px');
+  addButton.style('height', '2em');
+  addButton.style('width', '2em');
   addButton.style('border-radius', '50%');
   addButton.style('background-color', 'rgba(150, 150, 150, 0.7)');
   addButton.style('border', 'none');
@@ -157,8 +157,8 @@ function createButtonBar() {
   shareButton.style('display', 'flex');
   shareButton.style('justify-content', 'center'); 
   shareButton.style('align-items', 'center'); 
-  shareButton.style('height', '35px'); 
-  shareButton.style('width', '35px');
+  shareButton.style('height', '2em'); 
+  shareButton.style('width', '2em');
   shareButton.style('border-radius', '50%');
   shareButton.style('background-color', 'rgba(150, 150, 150, 0.7)');
   shareButton.style('border', 'none');
@@ -175,8 +175,8 @@ function createButtonBar() {
   seePoemButton.style('display', 'flex');
   seePoemButton.style('justify-content', 'center'); 
   seePoemButton.style('align-items', 'center'); 
-  seePoemButton.style('height', '35px'); 
-  seePoemButton.style('width', '35px');
+  seePoemButton.style('height', '2em'); 
+  seePoemButton.style('width', '2em');
   seePoemButton.style('border-radius', '50%');
   seePoemButton.style('background-color', 'rgba(150, 150, 150, 0.7)');
   seePoemButton.style('border', 'none');
@@ -196,11 +196,12 @@ function createButtonBar() {
 
 function createAboutButton() {
   let aboutButton = createButton('');
+  aboutButton.id('aboutButton');
   aboutButton.style('display', 'flex');
   aboutButton.style('justify-content', 'center'); 
   aboutButton.style('align-items', 'center'); 
-  aboutButton.style('height', '30px'); 
-  aboutButton.style('width', '30px');
+  aboutButton.style('height', '2em'); 
+  aboutButton.style('width', '2em');
   aboutButton.style('border-radius', '50%');
   aboutButton.style('background-color', 'rgba(150, 150, 150, 0.7)');
   aboutButton.style('border', 'none');
@@ -208,12 +209,13 @@ function createAboutButton() {
   aboutButton.style('color', 'white'); 
   aboutButton.style('font-weight', 'bold');
   aboutButton.style('position', 'absolute');
-  aboutButton.style('left', '98%');
-  aboutButton.style('bottom', '93%');
+  aboutButton.style('top', '4%');
+  aboutButton.style('right', '0%');
   aboutButton.style('transform', 'translate(-50%, -50%)');
   aboutButton.elt.innerHTML = '<i class="bi bi-question"></i>';
   aboutButton.mousePressed(aboutButtonClicked);
 }
+
 
 function saveButtonClicked() {
   savePhrase(addInput.value())
