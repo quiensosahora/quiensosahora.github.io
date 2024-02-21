@@ -129,7 +129,7 @@ function createButtonBar() {
   buttonContainer.style('position', 'absolute');
   buttonContainer.style('bottom', '3%');
   buttonContainer.style('left', '50%');
-  buttonContainer.style('transform', 'translateX(-50%)');
+  buttonContainer.style('transform', 'translate(-50%, -50%)');
   buttonContainer.style('display', 'flex');
   buttonContainer.style('align-items', 'center');
 
@@ -208,8 +208,8 @@ function createAboutButton() {
   aboutButton.style('color', 'white'); 
   aboutButton.style('font-weight', 'bold');
   aboutButton.style('position', 'absolute');
-  aboutButton.style('top', '4%');
-  aboutButton.style('right', '0%');
+  aboutButton.style('left', '98%');
+  aboutButton.style('bottom', '93%');
   aboutButton.style('transform', 'translate(-50%, -50%)');
   aboutButton.elt.innerHTML = '<i class="bi bi-question"></i>';
   aboutButton.mousePressed(aboutButtonClicked);
