@@ -89,7 +89,6 @@ function createContainer() {
   inputContainer.style('flex-direction', 'row'); 
   inputContainer.style('align-items', 'center');
   inputContainer.style('justify-content', 'center');
-  inputContainer.style('gap', '5px');
   
   // Calcula el tamaño máximo para el contenedor (75% del ancho de la ventana)
   let maxWidth = windowWidth * 0.75 + 'px';
@@ -117,6 +116,7 @@ function createContainer() {
   saveButton.style('background', 'none'); 
   saveButton.style('font-size', '34px'); 
   saveButton.style('color', 'white');
+  saveButton.style('margin', '0');
   saveButton.elt.innerHTML = '<i class="bi bi-save"></i>';
   saveButton.mousePressed(saveButtonClicked);  
   // Configura el evento para la tecla "Enter" en el input
