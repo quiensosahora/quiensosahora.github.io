@@ -67,6 +67,12 @@ function addButtonClicked() {
   } else {
     showCloseIcon();
     cleanInput();
+    setTimeout(() => {
+      let textBox = select('#textBox');
+      if (textBox) {
+        textBox.elt.focus();
+      }
+    }, 100);
   }
 
   isCloseIcon = !isCloseIcon; 
@@ -91,6 +97,7 @@ function createContainer() {
 
   // Crea add input
   addInput = createInput('');
+  addInput.id('textBox');
   addInput.size('75%');
   addInput.attribute('maxlength', '30');
   addInput.style('padding', '10px');
