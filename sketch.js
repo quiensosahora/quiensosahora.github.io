@@ -97,7 +97,6 @@ function createContainer() {
   // Crea add input
   addInput = createInput('');
   addInput.id('textBox');
-  addInput.size('75%');
   addInput.attribute('maxlength', '30');
   addInput.style('padding', '10px');
   addInput.style('font-size', '14px');
