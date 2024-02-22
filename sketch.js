@@ -82,18 +82,19 @@ function createContainer() {
   // Crea container div
   inputContainer = createDiv('');
   inputContainer.style('position', 'absolute');
-  inputContainer.style('top', '50%');
+  inputContainer.style('bottom', '50%');
   inputContainer.style('left', '50%');
   inputContainer.style('transform', 'translate(-50%, -50%)');
   inputContainer.style('display', 'flex'); 
   inputContainer.style('align-items', 'center');
+  inputContainer.style('height', '1em');
+  inputContainer.style('width', '10em');
 
   // Crea add input
   addInput = createInput('');
   addInput.id('textBox');
-  addInput.size('75%');
   addInput.attribute('maxlength', '30');
-  addInput.style('padding', '10px');
+  addInput.style('padding', '9px');
   addInput.style('font-size', '14px');
   addInput.style('border', '1px solid #ced4da');
   addInput.style('border-radius', '4px');
