@@ -81,15 +81,12 @@ function addButtonClicked() {
 function createContainer() {
   // Crea container div
   inputContainer = createDiv('');
-  inputContainer.style('position', 'fixed');
+  inputContainer.style('position', 'absolute');
   inputContainer.style('top', '50%');
   inputContainer.style('left', '50%');
   inputContainer.style('transform', 'translate(-50%, -50%)');
   inputContainer.style('display', 'flex'); 
-  inputContainer.style('flex-direction', 'row'); 
   inputContainer.style('align-items', 'center');
-  inputContainer.style('justify-content', 'space-between');
-  inputContainer.style('margin-bottom', '2vh');
   
   // Calcula el tamaño máximo para el contenedor (75% del ancho de la ventana)
   let maxWidth = windowWidth * 0.75 + 'px';
@@ -98,6 +95,7 @@ function createContainer() {
   // Crea add input
   addInput = createInput('');
   addInput.id('textBox');
+  addInput.size('75%');
   addInput.attribute('maxlength', '30');
   addInput.style('padding', '10px');
   addInput.style('font-size', '14px');
