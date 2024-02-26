@@ -1,7 +1,7 @@
 let glitch, capture;
 let saveButton, addInput, inputContainer, saveIcon;
 let isCloseIcon = false; 
-let url = 'https://phrases-server.vercel.app/';
+let url = 'https://localhost:5001/';
 let poem = [];
 let showModal = false, showPoem = false;
 
@@ -245,7 +245,7 @@ async function shareButtonClicked() {
     url: "https://developer.mozilla.org",
   };
 
-  if (navigator.canShare(shareData)) {
+  if (navigator.canShare) {
     console.log("navigator.canShare() supported. We can use navigator.share() to send the data.");
     navigator.share(shareData);
   } else {
@@ -369,10 +369,12 @@ function drawPhrase(element, index) {
     mouseY < textY + textAscent()
   ) {
     fill(255,0,255); 
-    let rand = random(['device', 'location']);
+    let rand = random(['device', 'location', 'os']);
 
     if(rand === 'device') {
       textToShow = element.device;
+    } else if(rand === 'os'){
+      textToShow = element.os;
     } else {
       textToShow = element.location;
     }
