@@ -246,12 +246,24 @@ async function shareButtonClicked() {
   };
 
   if (navigator.canShare) {
-    console.log("navigator.canShare() supported. We can use navigator.share() to send the data.");
+    let blob = await getCanvasBlob();
+    shareData.files = [new File([blob], 'quiensosahora.png', { type: 'image/png' })];
     navigator.share(shareData);
   } else {
     console.log("navigator.share() not supported.");
     saveCanvas("quiensosahora", "png");
   } 
+}
+
+function getCanvasBlob() {
+  return new Promise(resolve => {
+    // Obtener el canvas
+    let canvas = document.querySelector('canvas');
+    // Convertir el canvas a blob
+    canvas.toBlob(blob => {
+      resolve(blob);
+    });
+  });
 }
 
 async function seePoemButtonClicked() {
