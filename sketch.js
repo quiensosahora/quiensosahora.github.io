@@ -239,21 +239,25 @@ async function addNewPhrase(phrase) {
 }
 
 async function shareButtonClicked() {
-  let shareData = {
-    title: "¿Quién sos ahora?",
-    text: "#quiensosahora #poesiacolectiva #glitch",
-    url: "https://quiensosahora.github.io",
-  };
-
-  if (navigator.canShare) {
-    let blob = await getCanvasBlob();
-    console.log("blob:");
-    console.log(blob);
-    shareData.files = [new File([blob], 'quiensosahora.png', { type: 'image/png' })];
-    navigator.share(shareData);
-  } else {
+  if (!navigator.canShare) {
     console.log("navigator.share() not supported.");
-    saveCanvas("quiensosahora", "png");
+    saveCanvas("quiensosahora", "jpeg");
+    return;
+  }
+
+  let blob = await getCanvasBlob();
+  const files = [new File([blob], 'quiensosahora.jpg', { type: 'image/jpg' })];
+
+  if (navigator.canShare({ files })) {
+    try {
+      await navigator.share({
+        files,
+        title: "¿Quién sos ahora?",
+        text: "#quiensosahora #poesiacolectiva #glitch",
+      });
+    } catch (error) {
+      saveCanvas("quiensosahora", "jpg");
+    }
   } 
 }
 
@@ -261,8 +265,6 @@ function getCanvasBlob() {
   return new Promise(resolve => {
     // Obtener el canvas
     let canvas = document.querySelector('canvas');
-    console.log("canvas:");
-    console.log(canvas);
     // Convertir el canvas a blob
     canvas.toBlob(blob => {
       resolve(blob);
