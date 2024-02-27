@@ -246,7 +246,7 @@ async function shareButtonClicked() {
   }
 
   let blob = await getCanvasBlob();
-  const files = [new File([blob], 'quiensosahora.jpg', { type: 'image/jpg' })];
+  const files = [new File([blob], 'quiensosahora.jpeg', { type: 'image/jpeg' })];
 
   if (navigator.canShare({ files })) {
     try {
@@ -256,7 +256,7 @@ async function shareButtonClicked() {
         text: "#quiensosahora #poesiacolectiva #glitch",
       });
     } catch (error) {
-      saveCanvas("quiensosahora", "jpg");
+      saveCanvas("quiensosahora", "jpeg");
     }
   } 
 }
