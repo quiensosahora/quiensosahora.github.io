@@ -1,7 +1,7 @@
 let glitch, capture;
 let saveButton, addInput, inputContainer, saveIcon;
 let isCloseIcon = false; 
-let url = 'https://localhost:5001/';
+let url = 'https://phrases-server.vercel.app/';
 let poem = [];
 let showModal = false, showPoem = false;
 
@@ -241,12 +241,14 @@ async function addNewPhrase(phrase) {
 async function shareButtonClicked() {
   let shareData = {
     title: "¿Quién sos ahora?",
-    text: "esto es una prueba!",
-    url: "https://developer.mozilla.org",
+    text: "#quiensosahora #poesiacolectiva #glitch",
+    url: "https://quiensosahora.github.io",
   };
 
   if (navigator.canShare) {
     let blob = await getCanvasBlob();
+    console.log("blob:");
+    console.log(blob);
     shareData.files = [new File([blob], 'quiensosahora.png', { type: 'image/png' })];
     navigator.share(shareData);
   } else {
@@ -259,6 +261,8 @@ function getCanvasBlob() {
   return new Promise(resolve => {
     // Obtener el canvas
     let canvas = document.querySelector('canvas');
+    console.log("canvas:");
+    console.log(canvas);
     // Convertir el canvas a blob
     canvas.toBlob(blob => {
       resolve(blob);
