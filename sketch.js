@@ -252,8 +252,7 @@ async function shareButtonClicked() {
     try {
       await navigator.share({
         files,
-        title: "¿Quién sos ahora?",
-        text: "#quiensosahora #poesiacolectiva #glitch",
+        title: "#quiensosahora",
       });
     } catch (error) {
       saveCanvas("quiensosahora", "png");
