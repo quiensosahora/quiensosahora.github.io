@@ -239,30 +239,34 @@ async function addNewPhrase(phrase) {
 }
 
 async function shareButtonClicked() {
-  if(!navigator.canShare) {
+  if (!navigator.canShare) {
     saveCanvas("quiensosahora", "png");
     return;
   }
 
-  let url = await getCanvasDataURL();
+  let blob = await getCanvasBlob();
+  const files = [new File([blob], 'quiensosahora.png', { type: 'image/png' })];
 
-  let shareData = {
-    title: "¿Quién sos ahora?",
-    text: "#quiensosahora #poesiacolectiva #glitch",
-    url: url,
-  };
-
-  if (navigator.canShare(shareData)) {
-   navigator.share(shareData);
+  if (navigator.canShare({ files })) {
+    try {
+      await navigator.share({
+        files,
+        title: "#quiensosahora",
+      });
+    } catch (error) {
+      saveCanvas("quiensosahora", "png");
+    }
   } else {
-   saveCanvas("quiensosahora", "png");
-  } 
+    saveCanvas("quiensosahora", "png");
+  }
 }
 
-function getCanvasDataURL() {
+function getCanvasBlob() {
   return new Promise(resolve => {
     let canvas = document.querySelector('canvas');
-    resolve(canvas.toDataURL()); 
+    canvas.toBlob(blob => {
+      resolve(blob);
+    }, 'image/png'); 
   });
 }
 
