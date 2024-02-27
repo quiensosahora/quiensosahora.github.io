@@ -239,16 +239,23 @@ async function addNewPhrase(phrase) {
 }
 
 async function shareButtonClicked() {
+  if(!navigator.canShare) {
+    saveCanvas("quiensosahora", "png");
+    return;
+  }
+
+  let url = await getCanvasDataURL();
+
   let shareData = {
     title: "¿Quién sos ahora?",
     text: "#quiensosahora #poesiacolectiva #glitch",
-    url: await getCanvasDataURL(),
+    url: url,
   };
 
-  if (navigator.canShare) {
-    navigator.share(shareData);
+  if (navigator.canShare(shareData)) {
+   navigator.share(shareData);
   } else {
-    saveCanvas("quiensosahora", "png");
+   saveCanvas("quiensosahora", "png");
   } 
 }
 
