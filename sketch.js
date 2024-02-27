@@ -241,12 +241,12 @@ async function addNewPhrase(phrase) {
 async function shareButtonClicked() {
   if (!navigator.canShare) {
     console.log("navigator.share() not supported.");
-    saveCanvas("quiensosahora", "jpeg");
+    saveCanvas("quiensosahora", "png");
     return;
   }
 
   let blob = await getCanvasBlob();
-  const files = [new File([blob], 'quiensosahora.jpeg', { type: 'image/jpeg' })];
+  const files = [new File([blob], 'quiensosahora.png', { type: 'image/png' })];
 
   if (navigator.canShare({ files })) {
     try {
@@ -256,7 +256,7 @@ async function shareButtonClicked() {
         text: "#quiensosahora #poesiacolectiva #glitch",
       });
     } catch (error) {
-      saveCanvas("quiensosahora", "jpeg");
+      saveCanvas("quiensosahora", "png");
     }
   } 
 }
