@@ -11,6 +11,9 @@ function setup() {
   background(0);
 	imageMode(CENTER);
   
+  createModal();
+  showModalContent();
+
   // Create video
   capture = createCapture(VIDEO);
 	capture.size(windowWidth, windowHeight);
@@ -18,10 +21,8 @@ function setup() {
   
 	glitch = new Glitch();
 
-
   createButtonBar();
   createAboutButton();
-  createModal();
 }
 
 function draw() {
