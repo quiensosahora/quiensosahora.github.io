@@ -6,7 +6,7 @@ let poem = [];
 let showModal = false, showPoem = false;
 
 function setup() {
-  frameRate(1);
+  frameRate(3);
   createCanvas(windowWidth, windowHeight);
   background(0);
 	imageMode(CENTER);
@@ -17,8 +17,7 @@ function setup() {
 	capture.hide();
   
 	glitch = new Glitch();
-  glitch.pixelate(0.9);
-  glitch.loadQuality(0.05);
+
 
   createButtonBar();
   createAboutButton();
@@ -27,12 +26,15 @@ function setup() {
 
 function draw() {
 
+  glitch.pixelate(random(0.01, 1));
+  glitch.loadQuality(random(0.3, 1));
+
   glitch.loadImage(capture);
   
   glitch.limitBytes(0, 1);
 
   // cuando tira error building image es cuando logra el efecto fantasmagorico
-  glitch.replaceBytes(19, 42);
+  glitch.replaceBytes(47, 50);
   glitch.buildImage();
 
   //BLEND, DARKEST, LIGHTEST, DIFFERENCE, MULTIPLY, EXCLUSION, SCREEN, REPLACE, OVERLAY, HARD_LIGHT, SOFT_LIGHT, DODGE, BURN, ADD or NORMAL.
