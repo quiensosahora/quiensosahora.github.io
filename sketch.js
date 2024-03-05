@@ -7,7 +7,7 @@ let showModal = false, showPoem = false;
 
 function setup() {
   frameRate(3);
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(displayWidth, displayHeight);
   background(0);
 	imageMode(CENTER);
   
@@ -16,7 +16,7 @@ function setup() {
 
   // Create video
   capture = createCapture(VIDEO);
-	capture.size(windowWidth, windowHeight);
+	capture.size(displayWidth, displayHeight);
 	capture.hide();
   
 	glitch = new Glitch();
@@ -54,7 +54,7 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(displayWidth, displayHeight);
 }
 
 function addButtonClicked() {
