@@ -224,6 +224,7 @@ async function saveButtonClicked() {
   hideContainer();
   showPlusIcon();
   poem = await getPhrases();
+  showPoem = true;
 }
 
 async function shareButtonClicked() {
