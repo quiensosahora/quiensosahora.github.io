@@ -27,7 +27,6 @@ function setup() {
 
 function draw() {
 
-  glitch.pixelate(random(0.01, 1));
   glitch.loadQuality(random(0.3, 1));
 
   glitch.loadImage(capture);
@@ -38,8 +37,6 @@ function draw() {
   glitch.replaceBytes(47, 50);
   glitch.buildImage();
 
-  //BLEND, DARKEST, LIGHTEST, DIFFERENCE, MULTIPLY, EXCLUSION, SCREEN, REPLACE, OVERLAY, HARD_LIGHT, SOFT_LIGHT, DODGE, BURN, ADD or NORMAL.
-  //DIFFERENCE, EXCLUSION, BURN, HARD_LIGHT
   glitch.image.blend(capture, 0, 0, width, height, 0, 0, width, height, DIFFERENCE);
   
   image(glitch.image, width / 2, height / 2, glitch.width, glitch.height);
@@ -238,6 +235,7 @@ async function addNewPhrase(phrase) {
   };
   // agrega frase recien ingresada para mostrar primera
   poem.splice(0, 1, object);
+  console.log(poem);
   showPoem = true;
 }
 
