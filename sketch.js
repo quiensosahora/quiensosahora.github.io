@@ -219,24 +219,11 @@ function createAboutButton() {
 }
 
 
-function saveButtonClicked() {
+async function saveButtonClicked() {
   savePhrase(addInput.value())
   hideContainer();
   showPlusIcon();
-  addNewPhrase(addInput.value());
-}
-
-async function addNewPhrase(phrase) {
   poem = await getPhrases();
-  const object = {
-    phrase: phrase,
-    location: "here",
-    device: "unknown"
-  };
-  // agrega frase recien ingresada para mostrar primera
-  poem.splice(0, 1, object);
-  console.log(poem);
-  showPoem = true;
 }
 
 async function shareButtonClicked() {
