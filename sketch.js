@@ -16,7 +16,7 @@ function setup() {
 
   // Create video
   capture = createCapture(VIDEO);
-	capture.size(displayWidth, displayHeight);
+	capture.size(windowWidth, windowHeight);
 	capture.hide();
   
 	glitch = new Glitch();
@@ -51,7 +51,7 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(displayWidth, displayHeight);
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function addButtonClicked() {
