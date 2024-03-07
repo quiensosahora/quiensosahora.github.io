@@ -302,6 +302,8 @@ function createModal() {
   modalDiv.style('left', '50%');
   modalDiv.style('top', '50%');
   modalDiv.style('max-height', '80%'); 
+  modalDiv.style('width', '80%');
+  modalDiv.style('max-width', '800px');
   modalDiv.style('overflow-y', 'auto');
   modalDiv.style('transform', 'translate(-50%, -50%)');
   modalDiv.style('background-color', 'rgba(255, 255, 255, 0.9)'); 
