@@ -10,9 +10,6 @@ function setup() {
   createCanvas(displayWidth, displayHeight);
   background(0);
 	imageMode(CENTER);
-  
-  createModal();
-  showModalContent();
 
   // Create video
   capture = createCapture(VIDEO);
@@ -23,6 +20,8 @@ function setup() {
 
   createButtonBar();
   createAboutButton();
+  createModal();
+  showModalContent();
 }
 
 function draw() {
@@ -128,6 +127,7 @@ function createContainer() {
 function createButtonBar() {
   // Crea container div
   let buttonContainer = createDiv('');
+  buttonContainer.id("buttonBar");
   buttonContainer.style('position', 'absolute');
   buttonContainer.style('bottom', '3%');
   buttonContainer.style('left', '50%');
@@ -286,9 +286,17 @@ function closeModal() {
   if (modal) {
     modal.style('display', 'none');
   }
+  let buttonContainer = select('#buttonBar');
+  if (buttonContainer) {
+    buttonContainer.removeClass('disabled');
+  }
 }
 
 function showModalContent() {
+  let buttonContainer = select('#buttonBar');
+  if (buttonContainer) {
+    buttonContainer.addClass('disabled');
+  }
   let modal = select('#aboutModal');
   if (modal) {
     modal.style('display', 'block');
@@ -404,7 +412,7 @@ function drawPhrase(element, index) {
   text(textToShow, width / 15, y);
 }
 
-function hideContainer() {
+function hideContainer(container) {
   inputContainer.style('visibility', 'hidden'); 
   inputContainer.style('opacity', '0'); 
 }
