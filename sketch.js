@@ -224,6 +224,13 @@ async function saveButtonClicked() {
   hideContainer();
   showPlusIcon();
   poem = await getPhrases();
+  const object = {
+    phrase: phrase,
+    location: "aquí",
+    device: "algún dispositivo",
+    os: "un sistema operativo"
+  };
+  poem[0] = object;
   showPoem = true;
 }
 
@@ -374,7 +381,7 @@ function drawPhrase(element, index) {
   textSize(responsiveTextSize > 24 ? 24 : responsiveTextSize);
   strokeWeight(2);
   textFont('Inconsolata, monospace');
-  var textX = width / 15;
+  var textX = width / 10;
   var textY = y - textAscent() / 2;
 
   if (
@@ -450,16 +457,16 @@ function savePhrase(phrase) {
 async function getPhrases() {
   let phrases = [];
 
-  await httpGet(url + "5", 
-  'json', 
-  false, 
-  function(response) {
-    phrases = response;
-  },
-  // DEFINIR QUE HACER CON EL ERROR
-  function(error) {
-    console.log(error);
-  });
+  // await httpGet(url + "5", 
+  // 'json', 
+  // false, 
+  // function(response) {
+  //   phrases = response;
+  // },
+  // // DEFINIR QUE HACER CON EL ERROR
+  // function(error) {
+  //   console.log(error);
+  // });
 
-  return phrases;
+  return [{phrase: "hola"}, {phrase: "hola"}, {phrase: "hola"}, {phrase: "hola"}, {phrase: "hola"}];
 }
