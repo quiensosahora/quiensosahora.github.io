@@ -18,6 +18,7 @@ function setup() {
   
 	glitch = new Glitch();
 
+  createTextContainer();
   createButtonBar();
   createAboutButton();
   createModal();
@@ -41,7 +42,7 @@ function draw() {
   image(glitch.image, width / 2, height / 2, glitch.width, glitch.height);
 
   if(showPoem) {
-    poem.forEach(drawPhrase);
+    drawText();
   }
 
   if (showModal) {
@@ -57,11 +58,11 @@ function addButtonClicked() {
   if(inputContainer == undefined) {
     createContainer();  
   } else {
-    showContainer();
+    showContainer(inputContainer);
   }
 
   if (isCloseIcon) {
-    hideContainer();
+    hideContainer(inputContainer);
     showPlusIcon();
   } else {
     showCloseIcon();
@@ -218,10 +219,25 @@ function createAboutButton() {
   aboutButton.mousePressed(aboutButtonClicked);
 }
 
+function createTextContainer() {
+  let textContainer = createDiv('');
+  textContainer.id("poem");
+  textContainer.style('position', 'absolute');
+  textContainer.style('left', '5%');
+  textContainer.style('top', '10%');
+  textContainer.style('max-height', '80%'); 
+  textContainer.style('width', '80%');
+  textContainer.style('max-width', '800px');
+  textContainer.style('overflow-y', 'auto');
+  textContainer.style('font-family', 'Inconsolata, monospace');
+  textContainer.style('font-size', '24px');
+  textContainer.style('color', 'white');
+}
+
 
 async function saveButtonClicked() {
   savePhrase(addInput.value())
-  hideContainer();
+  hideContainer(inputContainer);
   showPlusIcon();
   poem = await getPhrases();
   const object = {
@@ -269,6 +285,12 @@ function getCanvasBlob() {
 async function seePoemButtonClicked() {
   poem = await getPhrases();
   showPoem = !showPoem;
+  let textContainer = select('#poem');
+  if(showPoem) {
+    showContainer(textContainer);
+  } else {
+    hideContainer(textContainer);
+  }
 }
 
 function aboutButtonClicked() {
@@ -369,6 +391,28 @@ function createModal() {
   closeButton.mousePressed(closeModal);
 }
 
+function drawText() {
+  let textContainer = select('#poem'); 
+  if (textContainer) {
+    // Limpio el texto mostrado previamente
+    while (textContainer.elt.firstChild) {
+      textContainer.elt.removeChild(textContainer.elt.firstChild);
+    }
+  }
+
+  for (var i = 0; i < poem.length; i++) {
+    var textToShow = poem[i].phrase;
+
+    // Crea un elemento de párrafo
+    var paragraph = createP(textToShow);
+    console.log(textToShow);
+
+    // Agrega el párrafo al contenedor
+    paragraph.parent('poem');
+
+  }
+}
+
 function drawPhrase(element, index) {
   var y = (index + 1) * height / (poem.length + 1);
   fill(255);
@@ -410,13 +454,13 @@ function drawPhrase(element, index) {
 }
 
 function hideContainer(container) {
-  inputContainer.style('visibility', 'hidden'); 
-  inputContainer.style('opacity', '0'); 
+  container.style('visibility', 'hidden'); 
+  container.style('opacity', '0'); 
 }
 
-function showContainer() {
-  inputContainer.style('visibility', 'visible'); 
-  inputContainer.style('opacity', '1');
+function showContainer(container) {
+  container.style('visibility', 'visible'); 
+  container.style('opacity', '1');
 }
 
 function showPlusIcon() {
