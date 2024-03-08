@@ -240,13 +240,6 @@ async function saveButtonClicked() {
   hideContainer(inputContainer);
   showPlusIcon();
   poem = await getPhrases();
-  const object = {
-    phrase: phrase,
-    location: "aquí",
-    device: "algún dispositivo",
-    os: "un sistema operativo"
-  };
-  poem[0] = object;
   showPoem = true;
 }
 
@@ -411,46 +404,6 @@ function drawText() {
     paragraph.parent('poem');
 
   }
-}
-
-function drawPhrase(element, index) {
-  var y = (index + 1) * height / (poem.length + 1);
-  fill(255);
-
-  // Establecer el tamaño del texto en relación con el ancho de la ventana
-  var textSizeFactor = 0.05;
-  var responsiveTextSize = width * textSizeFactor;
-  var textToShow = element.phrase;
-  
-  textSize(responsiveTextSize > 24 ? 24 : responsiveTextSize);
-  strokeWeight(2);
-  textFont('Inconsolata, monospace');
-  var textX = width / 5;
-  // factor para reducir el espacio vertical entre las frases
-  var verticalSpacingFactor = 0.8;
-  var textY = y - textAscent() / 2 * verticalSpacingFactor;
-
-  if (
-    mouseX > textX &&
-    mouseX < textX + textWidth(element.phrase) &&
-    mouseY > textY &&
-    mouseY < textY + textAscent()
-  ) {
-    fill(255,0,255); 
-    let rand = random(['device', 'location', 'os']);
-
-    if(rand === 'device') {
-      textToShow = element.device;
-    } else if(rand === 'os'){
-      textToShow = element.os;
-    } else {
-      textToShow = element.location;
-    }
-  } else {
-    fill(255);
-  }
-
-  text(textToShow, width / 15, y);
 }
 
 function hideContainer(container) {
