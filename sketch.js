@@ -243,6 +243,7 @@ async function saveButtonClicked() {
   showPoem = true;
   let textContainer = select('#poem');
   if(textContainer) {
+    cleanTextContainer();
     showContainer(textContainer);
   }
 }
@@ -284,6 +285,7 @@ async function seePoemButtonClicked() {
   showPoem = !showPoem;
   let textContainer = select('#poem');
   if(showPoem) {
+    cleanTextContainer();
     showContainer(textContainer);
   } else {
     hideContainer(textContainer);
@@ -388,7 +390,7 @@ function createModal() {
   closeButton.mousePressed(closeModal);
 }
 
-function drawText() {
+function cleanTextContainer() {
   let textContainer = select('#poem'); 
   if (textContainer) {
     // Limpio el texto mostrado previamente
@@ -396,6 +398,10 @@ function drawText() {
       textContainer.elt.removeChild(textContainer.elt.firstChild);
     }
   }
+}
+
+function drawText() {
+  cleanTextContainer();
 
   for (var i = 0; i < poem.length; i++) {
     var textToShow = poem[i].phrase;
