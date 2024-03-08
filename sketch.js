@@ -341,7 +341,7 @@ function createModal() {
   let title = '¿Quién sos ahora?';
   let text = 'Es una web interactiva que distorsiona los cuerpos de lxs usuarixs mientras establecen un diálogo sobre su identidad con el sistema.'
   let author = '<a href="https://www.naysolange.xyz" target="_blank">naysolange.xyz</a>'
-  let version = 'v1.0 | 2024;'
+  let version = 'v1.0 | 2024'
   let howToTitle = 'Modo de uso';
   let modalTitle = createP(title);
   let modalVersion = createP(version);
