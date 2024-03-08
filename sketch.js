@@ -381,8 +381,10 @@ function drawPhrase(element, index) {
   textSize(responsiveTextSize > 24 ? 24 : responsiveTextSize);
   strokeWeight(2);
   textFont('Inconsolata, monospace');
-  var textX = width / 10;
-  var textY = y - textAscent() / 2;
+  var textX = width / 5;
+  // factor para reducir el espacio vertical entre las frases
+  var verticalSpacingFactor = 0.8;
+  var textY = y - textAscent() / 2 * verticalSpacingFactor;
 
   if (
     mouseX > textX &&
@@ -457,16 +459,16 @@ function savePhrase(phrase) {
 async function getPhrases() {
   let phrases = [];
 
-  // await httpGet(url + "5", 
-  // 'json', 
-  // false, 
-  // function(response) {
-  //   phrases = response;
-  // },
-  // // DEFINIR QUE HACER CON EL ERROR
-  // function(error) {
-  //   console.log(error);
-  // });
+  await httpGet(url + "5", 
+  'json', 
+  false, 
+  function(response) {
+    phrases = response;
+  },
+  // DEFINIR QUE HACER CON EL ERROR
+  function(error) {
+    console.log(error);
+  });
 
-  return [{phrase: "hola"}, {phrase: "hola"}, {phrase: "hola"}, {phrase: "hola"}, {phrase: "hola"}];
+  return phrases;
 }
