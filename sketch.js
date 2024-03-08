@@ -241,6 +241,10 @@ async function saveButtonClicked() {
   showPlusIcon();
   poem = await getPhrases();
   showPoem = true;
+  let textContainer = select('#poem');
+  if(textContainer) {
+    showContainer(textContainer);
+  }
 }
 
 async function shareButtonClicked() {
