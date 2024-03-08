@@ -460,7 +460,7 @@ function savePhrase(phrase) {
 async function getPhrases() {
   let phrases = [];
 
-  await httpGet(url + "5", 
+  await httpGet(url + "7", 
   'json', 
   false, 
   function(response) {
