@@ -1,6 +1,6 @@
 html, body {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 .disabled {
@@ -10,4 +10,122 @@ html, body {
 
 canvas {
   display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Coloca el canvas en una capa inferior */
+}
+
+.arrow-icon {
+  font-size: 0.8em; 
+  position: relative; 
+  top: -3px;
+}
+
+.camera-icon {
+  font-size: 0.9em; 
+  position: relative; 
+  top: 3px; 
+}
+
+.rightButtonBar {
+  position: fixed;
+  top: 0.5%;
+  right: 0.5%;
+  height: 99%;
+  width: 2em; 
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+  justify-content: flex-start; /* Alinea los elementos al principio */
+  align-items: center; /* Centra horizontalmente los elementos */
+
+  background-color: aqua;
+}
+
+#aboutButton,
+#changeCameraButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2em;
+  width: 2em; 
+  min-width: 40px;
+  min-height: 40px;
+  border: none;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(150, 150, 150, 0.7);
+  margin-bottom: 2%; /* Espacio entre los botones */
+  border-radius: 50%; /* Asegura que los botones sean redondos */
+}
+
+#changeCameraButton {
+  margin-top: auto; 
+}
+
+.textContainer {
+  position: absolute;
+  left: 5%;
+  top: 10%; 
+  right: inherit;
+  max-height: 80%;
+  width: 80%; 
+  max-width: 800px; 
+  font-family: 'Inconsolata', monospace; 
+  font-size: 24px; 
+  color: white;
+}
+
+.bottomButtonBar {
+  position: fixed;
+  left: 0;
+  bottom: 0.5%;
+  left: 0; /* Ajustar el borde izquierdo a 0 */
+  width: 100%; /* Ocupar todo el ancho de la pantalla */
+  height: 3em; /* Establecer la altura igual al botón más grande */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
+.bottomButtonBar button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2em;
+  width: 2em; /* Ancho de los botones más pequeños */
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+  background-color: rgba(150, 150, 150, 0.7);
+  border: none;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  margin-right: 0.2%; /* Espacio entre los botones */
+}
+
+#addButton {
+  left: calc(50% - 2em);
+  width: 3em; 
+  height: 3em;
+  min-width: 60px;
+  min-height: 60px;
+}
+
+#shareButton {
+  left: 50%;
+}
+
+#shareButton,
+#seePoemButton {
+  align-self: flex-end; /* Alinea los botones al final del eje transversal */
+}
+
+#seePoemButton {
+  left: calc(50% + 2em);
 }

@@ -4,6 +4,7 @@ let isCloseIcon = false;
 let url = 'https://phrases-server.vercel.app/';
 let poem = [];
 let showModal = false, showPoem = false;
+let currentCamera = 'user'; 
 
 function setup() {
   frameRate(3);
@@ -12,17 +13,40 @@ function setup() {
 	imageMode(CENTER);
 
   // Create video
-  capture = createCapture(VIDEO);
+  let constraints = {
+    video: {
+      facingMode: currentCamera 
+    }
+  };
+  capture = createCapture(constraints);
 	capture.size(windowWidth, windowHeight);
 	capture.hide();
   
 	glitch = new Glitch();
 
-  createTextContainer();
-  createButtonBar();
-  createAboutButton();
+  configureButtons();
   createModal();
   showModalContent();
+}
+
+function changeCamera() {
+  if (currentCamera === 'user') {
+    currentCamera = 'environment';
+  } else {
+    currentCamera = 'user';
+  }
+  
+  let constraints = {
+    video: {
+      facingMode: currentCamera
+    }
+  };
+  capture.remove(); 
+  capture = createCapture(constraints, function(stream) {
+    console.log('Camera changed!');
+  });
+  capture.size(windowWidth, windowHeight);
+  capture.hide();
 }
 
 function draw() {
@@ -125,115 +149,32 @@ function createContainer() {
   inputContainer.child(saveButton);
 }
 
-function createButtonBar() {
-  // Crea container div
-  let buttonContainer = createDiv('');
-  buttonContainer.id("buttonBar");
-  buttonContainer.style('position', 'absolute');
-  buttonContainer.style('bottom', '3%');
-  buttonContainer.style('left', '50%');
-  buttonContainer.style('transform', 'translate(-50%, -50%)');
-  buttonContainer.style('display', 'flex');
-  buttonContainer.style('align-items', 'center');
+function configureButtons() {
+  let addButton = select('#addButton');
+  if (addButton) {
+    addButton.mousePressed(addButtonClicked);
+  }
 
-  // crea add button
-  let addButton = createButton('');
-  addButton.id('addButton');
-  addButton.style('display', 'flex');
-  addButton.style('justify-content', 'center'); 
-  addButton.style('align-items', 'center'); 
-  addButton.style('height', '2em');
-  addButton.style('width', '2em');
-  addButton.style('border-radius', '50%');
-  addButton.style('background-color', 'rgba(150, 150, 150, 0.7)');
-  addButton.style('border', 'none');
-  addButton.style('font-size', '30px');
-  addButton.style('color', 'white'); 
-  addButton.style('font-weight', 'bold');
-  addButton.style('position', 'absolute');
-  addButton.style('left', '50%');
-  addButton.style('transform', 'translate(-50%, -50%)');
-  addButton.elt.innerHTML = '<i class="bi bi-plus"></i>';
-  addButton.mousePressed(addButtonClicked); 
+  let shareButton = select('#shareButton');
+  if (shareButton) {
+    shareButton.mousePressed(shareButtonClicked);
+  }
 
-  let shareButton = createButton('');
-  shareButton.style('display', 'flex');
-  shareButton.style('justify-content', 'center'); 
-  shareButton.style('align-items', 'center'); 
-  shareButton.style('height', '2em'); 
-  shareButton.style('width', '2em');
-  shareButton.style('border-radius', '50%');
-  shareButton.style('background-color', 'rgba(150, 150, 150, 0.7)');
-  shareButton.style('border', 'none');
-  shareButton.style('font-size', '18px'); 
-  shareButton.style('color', 'white'); 
-  shareButton.style('font-weight', 'bold');
-  shareButton.style('position', 'absolute');
-  shareButton.style('left', 'calc(50% + 50px)');
-  shareButton.style('transform', 'translate(-50%, -50%)');
-  shareButton.elt.innerHTML = '<i class="bi bi-share"></i>';
-  shareButton.mousePressed(shareButtonClicked);
+  let seePoemButton = select('#seePoemButton');
+  if (seePoemButton) {
+    seePoemButton.mousePressed(seePoemButtonClicked);
+  }
 
-  let seePoemButton = createButton('');
-  seePoemButton.style('display', 'flex');
-  seePoemButton.style('justify-content', 'center'); 
-  seePoemButton.style('align-items', 'center'); 
-  seePoemButton.style('height', '2em'); 
-  seePoemButton.style('width', '2em');
-  seePoemButton.style('border-radius', '50%');
-  seePoemButton.style('background-color', 'rgba(150, 150, 150, 0.7)');
-  seePoemButton.style('border', 'none');
-  seePoemButton.style('font-size', '18px'); 
-  seePoemButton.style('color', 'white'); 
-  seePoemButton.style('font-weight', 'bold');
-  seePoemButton.style('position', 'absolute');
-  seePoemButton.style('left', 'calc(50% - 50px)');
-  seePoemButton.style('transform', 'translate(-50%, -50%)');
-  seePoemButton.elt.innerHTML = '<i class="bi bi-eye"></i>';
-  seePoemButton.mousePressed(seePoemButtonClicked);
+  let aboutButton = select('#aboutButton');
+  if (aboutButton) {
+    aboutButton.mousePressed(aboutButtonClicked);
+  }
 
-  buttonContainer.child(addButton);
-  buttonContainer.child(shareButton);
-  buttonContainer.child(seePoemButton);
+  let changeCameraButton = select('#changeCameraButton');
+  if (changeCameraButton) {
+    changeCameraButton.mousePressed(changeCamera);
+  }
 }
-
-function createAboutButton() {
-  let aboutButton = createButton('');
-  aboutButton.id('aboutButton');
-  aboutButton.style('display', 'flex');
-  aboutButton.style('justify-content', 'center'); 
-  aboutButton.style('align-items', 'center'); 
-  aboutButton.style('height', '2em'); 
-  aboutButton.style('width', '2em');
-  aboutButton.style('border-radius', '50%');
-  aboutButton.style('background-color', 'rgba(150, 150, 150, 0.7)');
-  aboutButton.style('border', 'none');
-  aboutButton.style('font-size', '18px'); 
-  aboutButton.style('color', 'white'); 
-  aboutButton.style('font-weight', 'bold');
-  aboutButton.style('position', 'absolute');
-  aboutButton.style('top', '4%');
-  aboutButton.style('right', '0%');
-  aboutButton.style('transform', 'translate(-50%, -50%)');
-  aboutButton.elt.innerHTML = '<i class="bi bi-question"></i>';
-  aboutButton.mousePressed(aboutButtonClicked);
-}
-
-function createTextContainer() {
-  let textContainer = createDiv('');
-  textContainer.id("poem");
-  textContainer.style('position', 'absolute');
-  textContainer.style('left', '5%');
-  textContainer.style('top', '10%');
-  textContainer.style('max-height', '80%'); 
-  textContainer.style('width', '80%');
-  textContainer.style('max-width', '800px');
-  textContainer.style('overflow-y', 'auto');
-  textContainer.style('font-family', 'Inconsolata, monospace');
-  textContainer.style('font-size', '24px');
-  textContainer.style('color', 'white');
-}
-
 
 async function saveButtonClicked() {
   savePhrase(addInput.value())
@@ -412,7 +353,6 @@ function drawText() {
 
     // Agrega el párrafo al contenedor
     paragraph.parent('poem');
-
   }
 }
 
@@ -466,16 +406,16 @@ function savePhrase(phrase) {
 async function getPhrases() {
   let phrases = [];
 
-  await httpGet(url + "7", 
-  'json', 
-  false, 
-  function(response) {
-    phrases = response;
-  },
-  // DEFINIR QUE HACER CON EL ERROR
-  function(error) {
-    console.log(error);
-  });
+  // await httpGet(url + "7", 
+  // 'json', 
+  // false, 
+  // function(response) {
+  //   phrases = response;
+  // },
+  // // DEFINIR QUE HACER CON EL ERROR
+  // function(error) {
+  //   console.log(error);
+  // });
 
-  return phrases;
+  return [{phrase:"hola"},{phrase:"hola que tal cheee dogihjdl "},{phrase:"hola"},{phrase:"hola"},{phrase:"hola"},{phrase:"hola"},{phrase:"hola como estas querida"}];
 }
