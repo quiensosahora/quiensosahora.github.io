@@ -40,8 +40,6 @@ canvas {
   flex-direction: column; /* Alinea los elementos en columna */
   justify-content: flex-start; /* Alinea los elementos al principio */
   align-items: center; /* Centra horizontalmente los elementos */
-
-  background-color: aqua;
 }
 
 #aboutButton,
@@ -89,7 +87,6 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
 }
 
 .bottomButtonBar button {
@@ -129,3 +126,63 @@ canvas {
 #seePoemButton {
   left: calc(50% + 2em);
 }
+
+/* Estilos del modal */
+.modal {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-height: 80%;
+  width: 80%;
+  max-width: 800px;
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: 'Inconsolata', monospace;
+}
+
+.modal-content {
+  position: relative;
+}
+
+/* Estilos del botón de cerrar */
+.closeButton {
+  text-align: right;
+  font-size: x-large;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* Estilos de los elementos dentro del modal */
+.modal-content h1,
+.modal-content h2,
+.modal-content p {
+  margin-bottom: 10px;
+}
+
+.modal-content a {
+  color: blue;
+}
+
+.modalFooter {
+  font-size: small;
+}
+
+/* Estilos del modo de uso */
+#howTo {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+#howTo div {
+  margin-bottom: 10px;
+}
+
+#howTo i {
+  margin-right: 5px;
+}
+

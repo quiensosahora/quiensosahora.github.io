@@ -13,20 +13,33 @@
   </head>
 
   <body>
-
       <div class="rightButtonBar">
         <button id="aboutButton"><i class="bi bi-question"></i></button>
         <button id="changeCameraButton"><i class="bi bi-arrow-counterclockwise arrow-icon"></i><i class="bi bi-camera camera-icon"></i></button>
       </div>
 
-      <div class="canvasContainer"></div>
       <div class="textContainer" id="poem"></div>
 
-      <div class="bottomButtonBar">
+      <div class="bottomButtonBar" id="bottomButtonBar">
         <button id="seePoemButton"><i class="bi bi-eye"></i></button>
         <button id="addButton"><i class="bi bi-plus"></i></button>
         <button id="shareButton"><i class="bi bi-share"></i></button>
       </div>
+
+      <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <div class="closeButton" id="modalCloseButton">&times;</div>
+            <h1>¿Quién sos ahora?</h1>
+            <p>Es una web interactiva que distorsiona los cuerpos de lxs usuarixs mientras establecen un diálogo sobre su identidad con el sistema.</p>
+            <h2>Modo de uso</h2>
+            <div id="howTo">
+                <div><i class="bi bi-eye"></i> Ver texto generado colectivamente</div>
+                <div><i class="bi bi-plus"></i> Agregar texto</div>
+                <div><i class="bi bi-share"></i> Compartir o descargar imagen</div>
+            </div>
+            <p class="modalFooter">v1.1 | 2024 | <a href="https://www.naysolange.xyz" target="_blank">naysolange.xyz</a></p>
+        </div>
+    </div>
       <script src="sketch.js"></script>
   </body>
 </html>

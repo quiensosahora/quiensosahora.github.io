@@ -25,7 +25,7 @@ function setup() {
 	glitch = new Glitch();
 
   configureButtons();
-  createModal();
+  //createModal();
   showModalContent();
 }
 
@@ -174,6 +174,11 @@ function configureButtons() {
   if (changeCameraButton) {
     changeCameraButton.mousePressed(changeCamera);
   }
+
+  let modalCloseButton = select('#modalCloseButton');
+  if (modalCloseButton) {
+    modalCloseButton.mousePressed(closeModal);
+  }
 }
 
 async function saveButtonClicked() {
@@ -243,14 +248,14 @@ function closeModal() {
   if (modal) {
     modal.style('display', 'none');
   }
-  let buttonContainer = select('#buttonBar');
+  let buttonContainer = select('#bottomButtonBar');
   if (buttonContainer) {
     buttonContainer.removeClass('disabled');
   }
 }
 
 function showModalContent() {
-  let buttonContainer = select('#buttonBar');
+  let buttonContainer = select('#bottomButtonBar');
   if (buttonContainer) {
     buttonContainer.addClass('disabled');
   }
@@ -258,77 +263,6 @@ function showModalContent() {
   if (modal) {
     modal.style('display', 'block');
   }
-}
-
-function createModal() {
-  let modalDiv = createDiv('');
-  modalDiv.id('aboutModal');
-  modalDiv.style('position', 'absolute');
-  modalDiv.style('left', '50%');
-  modalDiv.style('top', '50%');
-  modalDiv.style('max-height', '80%'); 
-  modalDiv.style('width', '80%');
-  modalDiv.style('max-width', '800px');
-  modalDiv.style('overflow-y', 'auto');
-  modalDiv.style('transform', 'translate(-50%, -50%)');
-  modalDiv.style('background-color', 'rgba(255, 255, 255, 0.9)'); 
-  modalDiv.style('padding', '20px');
-  modalDiv.style('box-shadow', '0 4px 8px rgba(0, 0, 0, 0.1)');
-  modalDiv.style('border-radius', '10px'); 
-  modalDiv.style('font-family', 'Inconsolata, monospace');
-  modalDiv.style('display', 'none');
-
-  // Contenido del modal
-  let title = '¿Quién sos ahora?';
-  let text = 'Es una web interactiva que distorsiona los cuerpos de lxs usuarixs mientras establecen un diálogo sobre su identidad con el sistema.'
-  let author = '<a href="https://www.naysolange.xyz" target="_blank">naysolange.xyz</a>'
-  let version = 'v1.0 | 2024'
-  let howToTitle = 'Modo de uso';
-  let modalTitle = createP(title);
-  let modalVersion = createP(version);
-  let modalText = createP(text);
-  let modalAuthor = createP(author);
-  modalTitle.style('font-weight', 'bold');
-  modalTitle.parent('aboutModal');
-  modalText.parent('aboutModal');
-  modalText.style('margin-bottom', '30px');
-
-  let howTo= createP(howToTitle);
-  howTo.style('font-weight', 'bold');
-  howTo.parent('aboutModal');
-
-  let howToDiv = createDiv('');
-  howToDiv.id('howTo'); 
-
-  let seeDiv = createDiv('');
-  seeDiv.elt.innerHTML = '<i class="bi bi-eye"></i> Ver texto generado colectivamente<br></br>';
-  seeDiv.parent('howTo');
-  howToDiv.parent('aboutModal');
-
-  let addDiv = createDiv('');
-  addDiv.elt.innerHTML = '<i class="bi bi-plus"></i> Agregar texto<br></br>';
-  addDiv.parent('howTo');
-  addDiv.parent('aboutModal');
-
-  let shareDiv = createDiv('');
-  shareDiv.elt.innerHTML = '<i class="bi bi-share"></i> Compartir o descargar imagen<br></br>';
-  shareDiv.parent('howTo');
-  shareDiv.parent('aboutModal');
-
-  modalVersion.style('font-size', '12px');
-  modalVersion.parent('aboutModal');
-  modalAuthor.style('font-size', '10px');
-  modalAuthor.parent('aboutModal');
-
-  // Botón de cerrar
-  let closeButton = createDiv('✖');
-  closeButton.parent('aboutModal');
-  closeButton.style('position', 'absolute');
-  closeButton.style('top', '10px');
-  closeButton.style('right', '10px');
-  closeButton.style('font-size', '20px');
-  closeButton.style('cursor', 'pointer');
-  closeButton.mousePressed(closeModal);
 }
 
 function cleanTextContainer() {
