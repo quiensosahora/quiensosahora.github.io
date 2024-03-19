@@ -25,28 +25,7 @@ function setup() {
 	glitch = new Glitch();
 
   configureButtons();
-  //createModal();
   showModalContent();
-}
-
-function changeCamera() {
-  if (currentCamera === 'user') {
-    currentCamera = 'environment';
-  } else {
-    currentCamera = 'user';
-  }
-  
-  let constraints = {
-    video: {
-      facingMode: currentCamera
-    }
-  };
-  capture.remove(); 
-  capture = createCapture(constraints, function(stream) {
-    console.log('Camera changed!');
-  });
-  capture.size(windowWidth, windowHeight);
-  capture.hide();
 }
 
 function draw() {
@@ -76,6 +55,26 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function changeCamera() {
+  if (currentCamera === 'user') {
+    currentCamera = 'environment';
+  } else {
+    currentCamera = 'user';
+  }
+  
+  let constraints = {
+    video: {
+      facingMode: currentCamera
+    }
+  };
+  capture.remove(); 
+  capture = createCapture(constraints, function(stream) {
+    console.log('Camera changed!');
+  });
+  capture.size(windowWidth, windowHeight);
+  capture.hide();
 }
 
 function addButtonClicked() {

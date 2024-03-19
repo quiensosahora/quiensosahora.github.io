@@ -93,6 +93,7 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: flex-end;
   height: 2em;
   width: 2em; /* Ancho de los botones más pequeños */
   min-width: 40px;
@@ -107,6 +108,7 @@ canvas {
 }
 
 #addButton {
+  bottom: 1%;
   left: calc(50% - 2em);
   width: 3em; 
   height: 3em;
@@ -116,11 +118,6 @@ canvas {
 
 #shareButton {
   left: 50%;
-}
-
-#shareButton,
-#seePoemButton {
-  align-self: flex-end; /* Alinea los botones al final del eje transversal */
 }
 
 #seePoemButton {
