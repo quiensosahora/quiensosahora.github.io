@@ -247,16 +247,24 @@ function closeModal() {
   if (modal) {
     modal.style('display', 'none');
   }
-  let buttonContainer = select('#bottomButtonBar');
-  if (buttonContainer) {
-    buttonContainer.removeClass('disabled');
+  let bottomButtonBar = select('#bottomButtonBar');
+  if (bottomButtonBar) {
+    bottomButtonBar.removeClass('disabled');
   }
+  let rightButtonBar = select('#rightButtonBar');
+  if (rightButtonBar) {
+    rightButtonBar.removeClass('disabled');
+  } 
 }
 
 function showModalContent() {
-  let buttonContainer = select('#bottomButtonBar');
-  if (buttonContainer) {
-    buttonContainer.addClass('disabled');
+  let bottomButtonBar = select('#bottomButtonBar');
+  if (bottomButtonBar) {
+    bottomButtonBar.addClass('disabled');
+  }
+  let rightButtonBar = select('#rightButtonBar');
+  if (rightButtonBar) {
+    rightButtonBar.addClass('disabled');
   }
   let modal = select('#aboutModal');
   if (modal) {
