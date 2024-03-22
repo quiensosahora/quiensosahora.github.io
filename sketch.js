@@ -321,16 +321,16 @@ function savePhrase(phrase) {
 async function getPhrases() {
   let phrases = [];
 
-  // await httpGet(url + "7", 
-  // 'json', 
-  // false, 
-  // function(response) {
-  //   phrases = response;
-  // },
-  // // DEFINIR QUE HACER CON EL ERROR
-  // function(error) {
-  //   console.log(error);
-  // });
+  await httpGet(url + "7", 
+  'json', 
+  false, 
+  function(response) {
+    phrases = response;
+  },
+  // DEFINIR QUE HACER CON EL ERROR
+  function(error) {
+    console.log(error);
+  });
 
-  return [{phrase:"hola"},{phrase:"hola que tal cheee dogihjdl "},{phrase:"hola"},{phrase:"hola"},{phrase:"hola"},{phrase:"hola"},{phrase:"hola como estas querida"}];
+  return phrases;
 }
