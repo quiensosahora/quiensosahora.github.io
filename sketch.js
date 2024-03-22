@@ -56,7 +56,7 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function changeCamera() {
+function changeCameraClicked() {
   if (currentCamera === 'user') {
     currentCamera = 'environment';
   } else {
@@ -121,7 +121,7 @@ function configureEvents() {
 
   let changeCameraButton = select('#changeCameraButton');
   if (changeCameraButton) {
-    changeCameraButton.mousePressed(changeCamera);
+    changeCameraButton.mousePressed(changeCameraClicked);
   }
 
   let modalCloseButton = select('#modalCloseButton');

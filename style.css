@@ -40,6 +40,7 @@ canvas {
   flex-direction: column; /* Alinea los elementos en columna */
   justify-content: flex-start; /* Alinea los elementos al principio */
   align-items: center; /* Centra horizontalmente los elementos */
+  z-index: 999;
 }
 
 #aboutButton,
