@@ -183,3 +183,33 @@ canvas {
   margin-right: 5px;
 }
 
+.inputContainer {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 7em);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  height: 1em;
+  width: 10em;
+}
+
+.inputContainer input[type="text"] {
+  padding: 9px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Inconsolata, monospace;
+}
+
+.inputContainer button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: none;
+  font-size: 34px;
+  color: white;
+}

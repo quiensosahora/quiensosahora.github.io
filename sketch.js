@@ -1,5 +1,4 @@
 let glitch, capture;
-let saveButton, addInput, inputContainer, saveIcon;
 let isCloseIcon = false; 
 let url = 'https://phrases-server.vercel.app/';
 let poem = [];
@@ -24,7 +23,7 @@ function setup() {
   
 	glitch = new Glitch();
 
-  configureButtons();
+  configureEvents();
   showModalContent();
 }
 
@@ -78,77 +77,28 @@ function changeCamera() {
 }
 
 function addButtonClicked() {
-  if(inputContainer == undefined) {
-    createContainer();  
-  } else {
+  let inputContainer = select('#inputContainer');
+  if(inputContainer) {
     showContainer(inputContainer);
-  }
-
-  if (isCloseIcon) {
-    hideContainer(inputContainer);
-    showPlusIcon();
-  } else {
-    showCloseIcon();
-    cleanInput();
-    setTimeout(() => {
-      let textBox = select('#textBox');
-      if (textBox) {
-        textBox.elt.focus();
-      }
-    }, 100);
-  }
-
-  isCloseIcon = !isCloseIcon; 
-}
-
-function createContainer() {
-  // Crea container div
-  inputContainer = createDiv('');
-  inputContainer.style('position', 'absolute');
-  inputContainer.style('bottom', '50%');
-  inputContainer.style('left', '50%');
-  inputContainer.style('transform', 'translate(-50%, -50%)');
-  inputContainer.style('display', 'flex'); 
-  inputContainer.style('align-items', 'center');
-  inputContainer.style('height', '1em');
-  inputContainer.style('width', '10em');
-
-  // Crea add input
-  addInput = createInput('');
-  addInput.id('textBox');
-  addInput.attribute('maxlength', '30');
-  addInput.style('padding', '9px');
-  addInput.style('font-size', '14px');
-  addInput.style('border', '1px solid #ced4da');
-  addInput.style('border-radius', '4px');
-  addInput.style('outline', 'none');
-  addInput.style('box-shadow', '0 2px 4px rgba(0, 0, 0, 0.1)');
-  addInput.style('font-family', 'Inconsolata, monospace');
-  addInput.attribute('placeholder', '¿Quién sos ahora?');
-
-  // Crea save button
-  saveButton = createButton('');
-  saveButton.style('border', 'none'); 
-  saveButton.style('outline', 'none'); // Elimina el borde al hacer clic
-  saveButton.style('box-shadow', 'none'); // Elimina la sombra
-  saveButton.style('background', 'none'); 
-  saveButton.style('font-size', '34px'); 
-  saveButton.style('color', 'white');
-  saveButton.elt.innerHTML = '<i class="bi bi-save"></i>';
-  saveButton.mousePressed(saveButtonClicked);  
-  // Configura el evento para la tecla "Enter" en el input
-  addInput.elt.addEventListener('keydown', function (event) {
-    if (event.keyCode === 13) {
-      saveButtonClicked();
+    if (isCloseIcon) {
+      hideContainer(inputContainer);
+      showPlusIcon();
+    } else {
+      showCloseIcon();
+      cleanInput();
+      setTimeout(() => {
+        let textBox = select('#textBox');
+        if (textBox) {
+          textBox.elt.focus();
+        }
+      }, 100);
     }
-  });
-
-  // Agrega el input y el botón al contenedor
-  inputContainer.child(addInput);
-  inputContainer.child(saveButton);
+  
+    isCloseIcon = !isCloseIcon; 
+  }
 }
 
-function configureButtons() {
+function configureEvents() {
   let addButton = select('#addButton');
   if (addButton) {
     addButton.mousePressed(addButtonClicked);
@@ -178,11 +128,33 @@ function configureButtons() {
   if (modalCloseButton) {
     modalCloseButton.mousePressed(closeModal);
   }
+
+  let saveButton = select('#saveButton');
+  if (saveButton) {
+    saveButton.mousePressed(saveButtonClicked);
+  }
+  
+  let textBox = select('#textBox');
+  if (textBox) {
+     // Configura el evento para la tecla "Enter" en el input
+    textBox.elt.addEventListener('keydown', function (event) {
+      if (event.keyCode === 13) {
+        saveButtonClicked();
+      }
+    });
+  }
 }
 
 async function saveButtonClicked() {
-  savePhrase(addInput.value())
-  hideContainer(inputContainer);
+  let textBox = select('#textBox');
+  if (textBox) {
+    savePhrase(textBox.value());
+  }
+  
+  let inputContainer = select('#inputContainer');
+  if(inputContainer) {
+    hideContainer(inputContainer);
+  } 
   showPlusIcon();
   poem = await getPhrases();
   showPoem = true;
@@ -290,7 +262,6 @@ function drawText() {
 
     // Crea un elemento de párrafo
     var paragraph = createP(textToShow);
-    console.log(textToShow);
 
     // Agrega el párrafo al contenedor
     paragraph.parent('poem');
@@ -322,7 +293,10 @@ function showCloseIcon() {
 }
 
 function cleanInput() {
-  addInput.value('');
+  let textBox = select('#textBox');
+  if (textBox) {
+    textBox.value('');
+  }
 }
 
 function savePhrase(phrase) {
