@@ -147,8 +147,9 @@ function configureEvents() {
 
 async function saveButtonClicked() {
   let textBox = select('#textBox');
+  let phrase = textBox.value();
   if (textBox) {
-    savePhrase(textBox.value());
+    savePhrase(phrase);
   }
   
   let inputContainer = select('#inputContainer');
@@ -157,6 +158,9 @@ async function saveButtonClicked() {
   } 
   showPlusIcon();
   poem = await getPhrases();
+  // Reemplazo ultimo poema a mostrar por el recien ingresado
+  poem.pop();
+  poem.push(phrase);
   showPoem = true;
   let textContainer = select('#poem');
   if(textContainer) {
