@@ -262,10 +262,29 @@ function drawText() {
   cleanTextContainer();
 
   for (var i = 0; i < poem.length; i++) {
-    var textToShow = poem[i].phrase;
+    let phraseToShow = poem[i].phrase;
+    var metadataOptions = ['location', 'device', 'os'];
+    var randomMetadataKey = random(metadataOptions);
+    var metadataToShow = poem[i][randomMetadataKey];
 
     // Crea un elemento de párrafo
-    var paragraph = createP(textToShow);
+    var paragraph = createP(phraseToShow);
+
+    paragraph.attribute('metadata-text', metadataToShow);
+    paragraph.attribute('phrase-text', phraseToShow);
+
+    // Agrega un event listener para alternar el texto al hacer clic
+    paragraph.mousePressed(function() {
+      var currentText = this.html();
+      var originalText = this.attribute('phrase-text');
+      var alternateText = this.attribute('metadata-text');
+      
+      if (currentText === alternateText) {
+        this.html(originalText);
+      } else {
+        this.html(alternateText);
+      }
+    });
 
     // Agrega el párrafo al contenedor
     paragraph.parent('poem');
