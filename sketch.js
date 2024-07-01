@@ -57,6 +57,7 @@ function windowResized() {
 }
 
 function changeCameraClicked() {
+  handleButtonClick(select('#changeCameraButton'));
   if (currentCamera === 'user') {
     currentCamera = 'environment';
   } else {
@@ -77,6 +78,7 @@ function changeCameraClicked() {
 }
 
 function addButtonClicked() {
+  handleButtonClick(select('#addButton'));
   let inputContainer = select('#inputContainer');
   if(inputContainer) {
     showContainer(inputContainer);
@@ -96,6 +98,16 @@ function addButtonClicked() {
   
     isCloseIcon = !isCloseIcon; 
   }
+}
+
+function handleButtonClick(button) {
+  button.addClass('pulse');
+  button.addClass('clicked');
+
+  setTimeout(function() {
+    button.removeClass('pulse');
+    button.removeClass('clicked');
+  }, 300);
 }
 
 function configureEvents() {
@@ -170,6 +182,7 @@ async function saveButtonClicked() {
 }
 
 async function shareButtonClicked() {
+  handleButtonClick(select('#shareButton'));
   if (!navigator.canShare) {
     saveCanvas("quiensosahora", "png");
     return;
@@ -202,6 +215,7 @@ function getCanvasBlob() {
 }
 
 async function seePoemButtonClicked() {
+  handleButtonClick(select('#seePoemButton'));
   poem = await getPhrases();
   showPoem = !showPoem;
   let textContainer = select('#poem');
@@ -214,6 +228,7 @@ async function seePoemButtonClicked() {
 }
 
 function aboutButtonClicked() {
+  handleButtonClick(select('#aboutButton'));
   showModal = true;
 }
 

@@ -214,3 +214,26 @@ canvas {
   font-size: 34px;
   color: white;
 }
+
+/* Efecto de pulsación */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 0.3s ease-in-out;
+}
+
+/* Cambiar color de fondo al hacer clic */
+.clicked {
+  background-color: rgba(166, 24, 248, 0.7) !important;
+}
+
