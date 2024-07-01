@@ -331,9 +331,6 @@ function savePhrase(phrase) {
     url,
     'json',
     postData,
-    function(result) {
-      console.log(result);
-    },
     // DEFINIR QUE HACER CON EL ERROR
     function(error) {
       console.log(error);
