@@ -4,7 +4,8 @@ let url = 'https://phrases-server.vercel.app/';
 let poem = [];
 let showModal = false, showPoem = false, gameOn = false;
 let currentCamera = 'user'; 
-let thief, initialGameOnFrame;
+let thief;
+let opacity;
 
 function preload() {
   thief = loadImage("assets/images/thief.png");
@@ -12,7 +13,7 @@ function preload() {
 
 function setup() {
   frameRate(3);
-  createCanvas(displayWidth, displayHeight);
+  createCanvas(windowWidth, windowHeight);
   background(0);
 	imageMode(CENTER);
 
@@ -34,11 +35,19 @@ function setup() {
 
 function draw() {
 
-  if(gameOn && (frameCount - initialGameOnFrame) < 500) {
+  if(gameOn) {
     frameRate(60);
-    image(thief, mouseX, mouseY, thief.width / 3, thief.height / 3);
+    if (opacity > 0) {
+      tint(255, opacity);
+      image(thief, mouseX, mouseY, thief.width / 3, thief.height / 3);
+      opacity -= 0.5;
+    } else {
+      gameOn = false;
+      tint(255, random(50,200));
+    }
   } else {
     frameRate(3);
+   
     glitch.loadQuality(random(0.3, 1));
 
     glitch.loadImage(capture);
@@ -75,9 +84,8 @@ function mousePressed() {
   if (mouseX > centerX - halfSize && mouseX < centerX + halfSize &&
       mouseY > centerY - halfSize && mouseY < centerY + halfSize) {
     gameOn = true;
+    opacity = 255;
   }
-
-  initialGameOnFrame = frameCount;
 }
 
 function changeCameraClicked() {
