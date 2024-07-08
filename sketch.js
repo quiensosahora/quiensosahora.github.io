@@ -2,8 +2,13 @@ let glitch, capture;
 let isCloseIcon = false; 
 let url = 'https://phrases-server.vercel.app/';
 let poem = [];
-let showModal = false, showPoem = false;
+let showModal = false, showPoem = false, gameOn = false;
 let currentCamera = 'user'; 
+let thief, initialGameOnFrame;
+
+function preload() {
+  thief = loadImage("assets/images/thief.png");
+}
 
 function setup() {
   frameRate(3);
@@ -29,31 +34,50 @@ function setup() {
 
 function draw() {
 
-  glitch.loadQuality(random(0.3, 1));
+  if(gameOn && (frameCount - initialGameOnFrame) < 500) {
+    frameRate(60);
+    image(thief, mouseX, mouseY, thief.width / 3, thief.height / 3);
+  } else {
+    frameRate(3);
+    glitch.loadQuality(random(0.3, 1));
 
-  glitch.loadImage(capture);
+    glitch.loadImage(capture);
+    
+    glitch.limitBytes(0, 1);
   
-  glitch.limitBytes(0, 1);
-
-  // cuando tira error building image es cuando logra el efecto fantasmagorico
-  glitch.replaceBytes(47, 50);
-  glitch.buildImage();
-
-  glitch.image.blend(capture, 0, 0, width, height, 0, 0, width, height, DIFFERENCE);
+    // cuando tira error building image es cuando logra el efecto fantasmagorico
+    glitch.replaceBytes(47, 50);
+    glitch.buildImage();
   
-  image(glitch.image, width / 2, height / 2, glitch.width, glitch.height);
+    glitch.image.blend(capture, 0, 0, width, height, 0, 0, width, height, DIFFERENCE);
+    
+    image(glitch.image, width / 2, height / 2, glitch.width, glitch.height);
+  }
 
   if(showPoem) {
     drawText();
   }
 
-  if (showModal) {
+  if(showModal) {
     showModalContent();
   }
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function mousePressed() {
+  let centerX = width / 2;
+  let centerY = height / 2;
+  let halfSize = 35;
+
+  if (mouseX > centerX - halfSize && mouseX < centerX + halfSize &&
+      mouseY > centerY - halfSize && mouseY < centerY + halfSize) {
+    gameOn = true;
+  }
+
+  initialGameOnFrame = frameCount;
 }
 
 function changeCameraClicked() {
