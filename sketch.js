@@ -76,10 +76,11 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function mousePressed() {
-  let centerX = width / 2;
-  let centerY = height / 2;
-  let halfSize = 35;
+function mouseDragged() {
+
+  let centerX = random(width);
+  let centerY = random(height);
+  let halfSize = 40;
 
   if (mouseX > centerX - halfSize && mouseX < centerX + halfSize &&
       mouseY > centerY - halfSize && mouseY < centerY + halfSize) {
