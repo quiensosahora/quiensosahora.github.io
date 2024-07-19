@@ -12,7 +12,7 @@ function preload() {
 }
 
 function setup() {
-  frameRate(3);
+  frameRate(1.5);
   createCanvas(windowWidth, windowHeight);
   background(0);
 	imageMode(CENTER);
@@ -36,19 +36,19 @@ function setup() {
 function draw() {
 
   if(gameOn) {
-    frameRate(60);
+    frameRate(30);
     if (opacity > 0) {
       tint(255, opacity);
       image(thief, mouseX, mouseY, thief.width / 3, thief.height / 3);
       opacity -= 0.5;
     } else {
       gameOn = false;
-      tint(255, random(50,200));
     }
   } else {
-    frameRate(3);
+    tint(255, 100);
+    frameRate(1.5);
    
-    glitch.loadQuality(random(0.3, 1));
+    glitch.loadQuality(random(0.5,5));
 
     glitch.loadImage(capture);
     
@@ -85,7 +85,7 @@ function mouseDragged() {
   if (mouseX > centerX - halfSize && mouseX < centerX + halfSize &&
       mouseY > centerY - halfSize && mouseY < centerY + halfSize) {
     gameOn = true;
-    opacity = 255;
+    opacity = 100;
   }
 }
 
