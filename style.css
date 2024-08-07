@@ -164,7 +164,15 @@ canvas {
 
 .modal-content a {
   color: blue;
-}
+} 
+
+ .modal-title-image {
+  width: 300px;  
+  height: auto;  
+  display: block;
+  margin-right: 20px; 
+  float: left;
+} 
 
 .modalFooter {
   font-size: small;
