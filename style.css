@@ -145,6 +145,7 @@ canvas {
 
 .modal-content {
   position: relative;
+  margin-right: 10px;
 }
 
 /* Estilos del botón de cerrar */
@@ -156,8 +157,7 @@ canvas {
 }
 
 /* Estilos de los elementos dentro del modal */
-.modal-content h1,
-.modal-content h2,
+.modal-content h3,
 .modal-content p {
   margin-bottom: 10px;
 }
@@ -181,15 +181,38 @@ canvas {
 /* Estilos del modo de uso */
 #howTo {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-#howTo div {
+ #howTo > div {
   margin-bottom: 10px;
-}
+  display: flex;
+  align-items: center;
+} 
 
 #howTo i {
-  margin-right: 5px;
+  margin-right: 0;
+}
+
+#howTo > div > div {
+  display: flex;
+  align-items: center;
+} 
+
+.arrow-icon,
+.camera-icon {
+  margin-right: 0; 
+}
+
+/* Espacio entre los íconos y el texto */
+#howTo > div > div {
+  margin-left: 10px;
+}
+
+.howTo-icon {
+  width: 30px;
 }
 
 .inputContainer {
