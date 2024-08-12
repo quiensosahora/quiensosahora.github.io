@@ -2,10 +2,11 @@ let glitch, capture;
 let isCloseIcon = false; 
 let url = 'https://phrases-server.vercel.app/';
 let poem = [];
-let showModal = false, showPoem = false, gameOn = false;
+let showModal = false, showPoem = false, gameOn = false, showPixels = false;
 let currentCamera = 'user'; 
 let thief;
 let opacity;
+let pixels = [];
 
 function preload() {
   thief = loadImage("assets/images/thief.png");
@@ -14,6 +15,7 @@ function preload() {
 function setup() {
   frameRate(1.5);
   createCanvas(windowWidth, windowHeight);
+  colorMode(HSB, 255, 100, 100);
   background(0);
 	imageMode(CENTER);
 
@@ -31,6 +33,10 @@ function setup() {
 
   configureEvents();
   showModalContent();
+
+  for (let i = 0; i < random(10,30); i++) { 
+    pixels.push(new Pixel((width), random(height), random(5, 50)));
+  }
 }
 
 function draw() {
@@ -65,6 +71,10 @@ function draw() {
 
   if(showPoem) {
     drawText();
+  }
+
+  if(showPixels) {
+    drawPixels();
   }
 
   if(showModal) {
@@ -249,14 +259,19 @@ function getCanvasBlob() {
 
 async function seePoemButtonClicked() {
   handleButtonClick(select('#seePoemButton'));
-  poem = await getPhrases();
-  showPoem = !showPoem;
-  let textContainer = select('#poem');
-  if(showPoem) {
-    cleanTextContainer();
-    showContainer(textContainer);
-  } else {
-    hideContainer(textContainer);
+  try {
+    showPixels = true;
+    poem = await getPhrases();
+    showPoem = !showPoem;
+    let textContainer = select('#poem');
+    if(showPoem) {
+      cleanTextContainer();
+      showContainer(textContainer);
+    } else {
+      hideContainer(textContainer);
+    }
+  } finally {
+    showPixels = false;
   }
 }
 
