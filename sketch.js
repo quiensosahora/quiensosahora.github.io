@@ -215,6 +215,7 @@ async function saveButtonClicked() {
   try {
     showPixels = true;
     poem = await getPhrases();
+     // Reemplazo ultimo poema a mostrar por el recien ingresado
     poem.pop();
     poem.push({"phrase": phrase, "location": "algún lugar", "device": "un dispositivo", "os": "un sistema"});
     showPoem = true;
@@ -225,12 +226,8 @@ async function saveButtonClicked() {
     }
   }
   finally {
-    showPixels = false;
+showPixels = true;
   }
-}
-  
-  // Reemplazo ultimo poema a mostrar por el recien ingresado
- 
 }
 
 async function shareButtonClicked() {
