@@ -34,7 +34,7 @@ function setup() {
   configureEvents();
   showModalContent();
 
-  for (let i = 0; i < random(10,30); i++) { 
+  for (let i = 0; i < random(20,60); i++) { 
     pixels.push(new Pixel(random(width), random(height), random(5, 50)));
   }
 }
