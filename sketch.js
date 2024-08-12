@@ -417,3 +417,10 @@ async function getPhrases() {
 
   return phrases;
 }
+
+function drawPixels() {
+  for(pixel of pixels) {
+    pixel.move();
+    pixel.display();
+  }
+}
