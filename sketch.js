@@ -226,7 +226,7 @@ async function saveButtonClicked() {
     }
   }
   finally {
-showPixels = true;
+    showPixels = false;
   }
 }
 
