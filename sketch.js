@@ -2,7 +2,7 @@ let glitch, capture;
 let isCloseIcon = false; 
 let url = 'https://phrases-server.vercel.app/';
 let poem = [];
-let showModal = false, showPoem = false, gameOn = false, showPixels = false;
+let showModal = false, showPoem = false, gameOn = false, showPixels = false, isMobile = false, blackBox = false;
 let currentCamera = 'user'; 
 let thief;
 let opacity;
@@ -33,6 +33,7 @@ function setup() {
 
   configureEvents();
   showModalContent();
+  getDevice();
 
   for (let i = 0; i < random(20,60); i++) { 
     pixels.push(new Pixel(random(width), random(height), random(5, 50)));
@@ -74,11 +75,18 @@ function draw() {
   }
 
   if(showPixels) {
-    drawPixels();
+    drawPixels(blackBox);
   }
 
   if(showModal) {
     showModalContent();
+  }
+}
+
+function getDevice(){
+  let agent = window.navigator.userAgent
+  if (agent.match(/Android/i)||agent.match(/iPhone/i)||agent.match(/iPad/i)) {
+    isMobile = true
   }
 }
 
@@ -101,23 +109,27 @@ function mouseDragged() {
 
 function changeCameraClicked() {
   handleButtonClick(select('#changeCameraButton'));
-  if (currentCamera === 'user') {
-    currentCamera = 'environment';
-  } else {
-    currentCamera = 'user';
-  }
-  
-  let constraints = {
-    video: {
-      facingMode: currentCamera
+  if(isMobile) {
+    if (currentCamera === 'user') {
+      currentCamera = 'environment';
+    } else {
+      currentCamera = 'user';
     }
-  };
-  capture.remove(); 
-  capture = createCapture(constraints, function(stream) {
-    console.log('Camera changed!');
-  });
-  capture.size(windowWidth, windowHeight);
-  capture.hide();
+    
+    let constraints = {
+      video: {
+        facingMode: currentCamera
+      }
+    };
+    capture.remove(); 
+    capture = createCapture(constraints, function(stream) {
+      console.log('Camera changed!');
+    });
+    capture.size(windowWidth, windowHeight);
+    capture.hide();
+  } else {
+    showPixels = !showPixels;
+  }
 }
 
 function addButtonClicked() {
@@ -214,6 +226,7 @@ async function saveButtonClicked() {
   showPlusIcon();
   try {
     showPixels = true;
+    blackBox = false;
     poem = await getPhrases();
      // Reemplazo ultimo poema a mostrar por el recien ingresado
     poem.pop();
@@ -267,6 +280,7 @@ async function seePoemButtonClicked() {
   handleButtonClick(select('#seePoemButton'));
   try {
     showPixels = true;
+    blackBox = true;
     poem = await getPhrases();
     showPoem = !showPoem;
     let textContainer = select('#poem');
@@ -278,6 +292,7 @@ async function seePoemButtonClicked() {
     }
   } finally {
     showPixels = false;
+    blackBox = false;
   }
 }
 
@@ -415,17 +430,20 @@ async function getPhrases() {
   false, 
   function(response) {
     phrases = response;
-  },
-  // DEFINIR QUE HACER CON EL ERROR
-  function(error) {
-    console.log(error);
   });
 
   return phrases;
 }
 
-function drawPixels() {
+function drawPixels(blackBox) {
   for(pixel of pixels) {
+    if(blackBox) {
+      pixel.setEffect(THRESHOLD);
+      pixel.setEffectValue(0.5);
+    } else {
+      pixel.setEffect(POSTERIZE);
+      pixel.setEffectValue(3);
+    }
     pixel.move();
     pixel.display();
   }

@@ -40,10 +40,6 @@ class Pixel {
             pixelTexture.filter(this.effect); 
         }
         
-        //INVERT
-        //THRESHORLD
-        //BLUR
-        //POSTERIZE
         noFill();
         stroke(255, 150);
         strokeWeight(0.5);
