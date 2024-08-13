@@ -34,10 +34,7 @@ function setup() {
   configureEvents();
   showModalContent();
   getDevice();
-
-  for (let i = 0; i < random(20,60); i++) { 
-    pixels.push(new Pixel(random(width), random(height), random(5, 50)));
-  }
+  createPixels();
 }
 
 function draw() {
@@ -446,5 +443,11 @@ function drawPixels(blackBox) {
     }
     pixel.move();
     pixel.display();
+  }
+}
+
+function createPixels() {
+  for (let i = 0; i < random(20,60); i++) { 
+    pixels.push(new Pixel(random(width), random(height), random(5, 50)));
   }
 }
