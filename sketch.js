@@ -117,31 +117,38 @@ function drawText() {
 
   for (var i = 0; i < poem.length; i++) {
     let phraseToShow = poem[i].phrase;
-    var metadataOptions = ['location', 'device', 'os'];
-    var randomMetadataKey = random(metadataOptions);
-    var metadataToShow = poem[i][randomMetadataKey];
 
-    // Crea un elemento de párrafo
-    var paragraph = createP(phraseToShow);
+    if(phraseToShow.trim() === 'quien sos ahora') {
+      let poemDiv = select('#poem');
+      let link = '<a href="https://t.me/+5YEC3YL-5zpmYzI5" target="_blank">Grupo de Telegram</a>';
+      poemDiv.html(link);
+    } else {
+      var metadataOptions = ['location', 'device', 'os'];
+      var randomMetadataKey = random(metadataOptions);
+      var metadataToShow = poem[i][randomMetadataKey];
 
-    paragraph.attribute('metadata-text', metadataToShow);
-    paragraph.attribute('phrase-text', phraseToShow);
+      // Crea un elemento de párrafo
+      var paragraph = createP(phraseToShow);
 
-    // Agrega un event listener para alternar el texto al hacer clic
-    paragraph.mousePressed(function() {
-      var currentText = this.html();
-      var originalText = this.attribute('phrase-text');
-      var alternateText = this.attribute('metadata-text');
-      
-      if (currentText === alternateText) {
-        this.html(originalText);
-      } else {
-        this.html(alternateText);
-      }
-    });
+      paragraph.attribute('metadata-text', metadataToShow);
+      paragraph.attribute('phrase-text', phraseToShow);
 
-    // Agrega el párrafo al contenedor
-    paragraph.parent('poem');
+      // Agrega un event listener para alternar el texto al hacer clic
+      paragraph.mousePressed(function() {
+        var currentText = this.html();
+        var originalText = this.attribute('phrase-text');
+        var alternateText = this.attribute('metadata-text');
+        
+        if (currentText === alternateText) {
+          this.html(originalText);
+        } else {
+          this.html(alternateText);
+        }
+      });
+
+      // Agrega el párrafo al contenedor
+      paragraph.parent('poem');
+    }
   }
 }
 
