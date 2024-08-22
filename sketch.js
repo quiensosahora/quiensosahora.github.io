@@ -120,7 +120,7 @@ function drawText() {
 
     if(phraseToShow.trim() === 'quien sos ahora') {
       let poemDiv = select('#poem');
-      let link = '<a href="https://t.me/+5YEC3YL-5zpmYzI5" target="_blank">Grupo de Telegram</a>';
+      let link = '<a href="https://bit.ly/quiensosahora-telegram" target="_blank">Grupo de Telegram</a>';
       poemDiv.html(link);
     } else {
       var metadataOptions = ['location', 'device', 'os'];
