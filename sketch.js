@@ -4,7 +4,7 @@ let url = 'https://phrases-server.vercel.app/';
 let poem = [];
 let showModal = false, showPoem = false, gameOn = false, showPixels = false, isMobile = false, blackBox = false;
 let currentCamera = 'user'; 
-let thief;
+let thief, centerX, centerY;
 let opacity;
 let pixels = [];
 
@@ -93,6 +93,13 @@ function draw() {
     glitch.image.blend(capture, 0, 0, width, height, 0, 0, width, height, DIFFERENCE);
     
     image(glitch.image, width / 2, height / 2, glitch.width, glitch.height);
+
+    // pista para encontrar al ladrón
+    centerX = random(width);
+    centerY = random(height);
+    fill(255);
+    noStroke();
+    rect(centerX, centerY, 30);
   }
 
   if(showPoem) {
@@ -167,8 +174,6 @@ function drawPixels(blackBox) {
 }
 
 function mouseDragged() {
-  let centerX = random(width);
-  let centerY = random(height);
   let halfSize = 40;
 
   if (mouseX > centerX - halfSize && mouseX < centerX + halfSize &&
