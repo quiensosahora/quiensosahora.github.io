@@ -2,11 +2,13 @@ let glitch, capture;
 let isCloseIcon = false; 
 let url = 'https://phrases-server.vercel.app/';
 let poem = [];
-let showModal = false, showPoem = false, gameOn = false, showPixels = false, isMobile = false, blackBox = false;
+let showModal = false, showPoem = false, gameOn = false, showPixels = false, isMobile = false, blackBox = false, demoParam = false, demo = false;
 let currentCamera = 'user'; 
 let thief, centerX, centerY, sizeClue, halfSize;
 let opacity;
 let pixels = [];
+let lastInteractionTime;
+const idleTimeLimit = 600000; // Cada 10 minutos de inactividad la web realiza una "demo"
 
 function preload() {
   thief = loadImage("assets/images/thief.png");
@@ -35,6 +37,8 @@ function setup() {
   showModalContent();
   getDevice();
   createPixels();
+  getQueryParam();
+
   if(isMobile) {
     sizeClue = 10;
     halfSize = 20;
@@ -42,6 +46,8 @@ function setup() {
     sizeClue = 20;
     halfSize = 40;
   }
+
+  lastInteractionTime = millis();
 }
 
 function showModalContent() {
@@ -120,6 +126,16 @@ function draw() {
   if(showModal) {
     showModalContent();
   }
+
+  if(demo) {
+    console.log("Demo on");
+    showDemo();
+    resetTimer();
+  }
+
+  if(demoParam && millis() - lastInteractionTime >= idleTimeLimit) {
+    demo = true;
+  }
 }
 
 function windowResized() {
@@ -180,10 +196,45 @@ function drawPixels(blackBox) {
   }
 }
 
+function getQueryParam() {
+  let params = new URLSearchParams(window.location.search);
+  demoParam = params.get('demo');
+}
+
+function showDemo() {
+  var demoOptions = ['text', 'add', 'camera'];
+  var demoSelected = random(demoOptions);
+  if(demoSelected === 'text') {
+    seePoemButtonClicked();
+  } else if(demoSelected === 'add') {
+    addButtonClicked();
+  } else {
+    changeCameraClicked();
+  }
+  demo = false;
+}
+
+function resetTimer() {
+  lastInteractionTime = millis(); 
+}
+
 function mouseDragged() {
+  resetTimer();
   if (mouseX > centerX - halfSize && mouseX < centerX + halfSize &&
       mouseY > centerY - halfSize && mouseY < centerY + halfSize) {
     gameOn = true;
     opacity = 100;
   }
+}
+
+function mouseMoved() {
+  resetTimer();
+}
+
+function mousePressed() {
+  resetTimer();
+}
+
+function keyPressed() {
+  resetTimer();
 }
