@@ -51,17 +51,17 @@ function addButtonClicked() {
     if(inputContainer) {
         showContainer(inputContainer);
         if (isCloseIcon) {
-        hideContainer(inputContainer);
-        showPlusIcon();
+          hideContainer(inputContainer);
+          showPlusIcon();
         } else {
-        showCloseIcon();
-        cleanInput();
-        setTimeout(() => {
-            let textBox = select('#textBox');
-            if (textBox) {
-            textBox.elt.focus();
-            }
-        }, 100);
+          showCloseIcon();
+          cleanInput();
+          setTimeout(() => {
+              let textBox = select('#textBox');
+              if (textBox) {
+              textBox.elt.focus();
+              }
+          }, 100);
         }
 
         isCloseIcon = !isCloseIcon; 
