@@ -4,7 +4,7 @@ let url = 'https://phrases-server.vercel.app/';
 let poem = [];
 let showModal = false, showPoem = false, gameOn = false, showPixels = false, isMobile = false, blackBox = false;
 let currentCamera = 'user'; 
-let thief, centerX, centerY;
+let thief, centerX, centerY, sizeClue, halfSize;
 let opacity;
 let pixels = [];
 
@@ -35,6 +35,13 @@ function setup() {
   showModalContent();
   getDevice();
   createPixels();
+  if(isMobile) {
+    sizeClue = 10;
+    halfSize = 20;
+  } else {
+    sizeClue = 20;
+    halfSize = 40;
+  }
 }
 
 function showModalContent() {
@@ -99,7 +106,7 @@ function draw() {
     centerY = random(height);
     fill(255);
     noStroke();
-    rect(centerX, centerY, 30);
+    rect(centerX, centerY, sizeClue);
   }
 
   if(showPoem) {
@@ -174,8 +181,6 @@ function drawPixels(blackBox) {
 }
 
 function mouseDragged() {
-  let halfSize = 40;
-
   if (mouseX > centerX - halfSize && mouseX < centerX + halfSize &&
       mouseY > centerY - halfSize && mouseY < centerY + halfSize) {
     gameOn = true;
