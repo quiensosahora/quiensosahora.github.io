@@ -38,14 +38,7 @@ function setup() {
   getDevice();
   createPixels();
   getQueryParam();
-
-  if(isMobile) {
-    sizeClue = 10;
-    halfSize = 20;
-  } else {
-    sizeClue = 20;
-    halfSize = 40;
-  }
+  configureEasterEgg();
 
   lastInteractionTime = millis();
 }
@@ -110,8 +103,9 @@ function draw() {
     // pista para encontrar al ladrón
     centerX = random(width);
     centerY = random(height);
-    fill(255);
-    noStroke();
+    fill(0);
+    stroke(255, 150);
+    strokeWeight(1.5);
     rect(centerX, centerY, sizeClue);
   }
 
@@ -199,6 +193,16 @@ function drawPixels(blackBox) {
 function getQueryParam() {
   let params = new URLSearchParams(window.location.search);
   demoParam = params.get('demo');
+}
+
+function configureEasterEgg() {
+  if(isMobile) {
+    sizeClue = 10;
+    halfSize = 20;
+  } else {
+    sizeClue = 20;
+    halfSize = 40;
+  }
 }
 
 function showDemo() {
