@@ -59,7 +59,7 @@ canvas {
   font-size: 18px;
   color: white;
   font-weight: bold;
-  background-color: rgba(150, 150, 150, 0.7);
+  background-color: rgba(150, 150, 150, 1);
   margin-bottom: 2%; /* Espacio entre los botones */
   border-radius: 50%; /* Asegura que los botones sean redondos */
 }
@@ -103,7 +103,7 @@ canvas {
   min-width: 40px;
   min-height: 40px;
   border-radius: 50%;
-  background-color: rgba(150, 150, 150, 0.7);
+  background-color: rgba(150, 150, 150, 1);
   border: none;
   font-size: 18px;
   color: white;
