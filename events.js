@@ -253,6 +253,39 @@ async function saveButtonClicked() {
     }
 }
 
-  
-  
+document.getElementById('languageToggleButton').addEventListener('click', () => {
+  const texts = {
+    es: {
+      modalText1: "Es una web interactiva que te distorsiona mientras establecés un diálogo sobre tu identidad con el sistema.",
+      modalText2: "Habilitá tu cámara. No se almacena ninguna imagen tuya en ningún lado.",
+      usageTitle: "Modo de uso",
+      howToText1: "Ver texto generado colectivamente",
+      howToText2: "Agregar texto",
+      howToText3: "Compartir o descargar imagen",
+      howToText4: "Cambiar cámara"
+    },
+    en: {
+      modalText1: "It's an interactive website that distorts you while you engage in a dialogue about your identity with the system.",
+      modalText2: "Enable your camera. No images of you are stored anywhere.",
+      usageTitle: "How to Use",
+      howToText1: "View collectively generated text",
+      howToText2: "Add text",
+      howToText3: "Share or download image",
+      howToText4: "Change camera"
+    }
+  };
+
+  const currentLang = document.getElementById('languageToggleButton').textContent === 'EN' ? 'en' : 'es';
+  const newLang = currentLang === 'es' ? 'en' : 'es';
+  document.getElementById('languageToggleButton').textContent = newLang.toUpperCase();
+
+  // Update modal texts
+  document.getElementById('modalText1').textContent = texts[newLang].modalText1;
+  document.getElementById('modalText2').textContent = texts[newLang].modalText2;
+  document.getElementById('usageTitle').textContent = texts[newLang].usageTitle;
+  document.getElementById('howToText1').textContent = texts[newLang].howToText1;
+  document.getElementById('howToText2').textContent = texts[newLang].howToText2;
+  document.getElementById('howToText3').textContent = texts[newLang].howToText3;
+  document.getElementById('howToText4').textContent = texts[newLang].howToText4;
+}); 
   
