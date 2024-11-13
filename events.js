@@ -142,10 +142,10 @@ async function seePoemButtonClicked() {
     try {
       showPixels = true;
       blackBox = true;
-      poem = await getPhrases();
       showPoem = !showPoem;
       let textContainer = select('#poem');
       if(showPoem) {
+        poem = await getPhrases();
         cleanTextContainer();
         showContainer(textContainer);
       } else {
@@ -233,14 +233,10 @@ async function saveButtonClicked() {
     try {
       showPixels = true;
       blackBox = false;
-      /*if(phrase.trim() === 'quien sos ahora') {
-        poem.push({"phrase": phrase});
-      } else {*/
-        poem = await getPhrases();
-        // Reemplazo ultimo poema a mostrar por el recien ingresado
-        poem.pop();
-        poem.push({"phrase": phrase, "location": "algún lugar", "device": "un dispositivo", "os": "un sistema"});
-      //}
+      poem = await getPhrases();
+      // Reemplazo ultimo poema a mostrar por el recien ingresado
+      poem.pop();
+      poem.push({"phrase": phrase, "location": "algún lugar", "device": "un dispositivo", "os": "un sistema"});
       showPoem = true;
       let textContainer = select('#poem');
       if(textContainer) {
