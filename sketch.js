@@ -146,6 +146,7 @@ function drawText() {
       let poemDiv = select('#poem');
       let link = '<a href="https://bit.ly/quiensosahora-telegram" target="_blank">¿quién sos ahora?</a>';
       poemDiv.html(link);
+      createElement('br').parent('poem');
     } else {
       var metadataOptions = ['location', 'device', 'os'];
       var randomMetadataKey = random(metadataOptions);
@@ -173,10 +174,9 @@ function drawText() {
 
       // Agrega el párrafo al contenedor
       paragraph.parent('poem');
-
-      // Agrega un salto de línea después del párrafo
-      createElement('br').parent('poem');
     }
+    // Agrega un salto de línea después del párrafo
+    createElement('br').parent('poem');
   }
 }
 
