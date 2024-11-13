@@ -233,14 +233,14 @@ async function saveButtonClicked() {
     try {
       showPixels = true;
       blackBox = false;
-      if(phrase.trim() === 'quien sos ahora') {
+      /*if(phrase.trim() === 'quien sos ahora') {
         poem.push({"phrase": phrase});
-      } else {
+      } else {*/
         poem = await getPhrases();
         // Reemplazo ultimo poema a mostrar por el recien ingresado
         poem.pop();
         poem.push({"phrase": phrase, "location": "algún lugar", "device": "un dispositivo", "os": "un sistema"});
-      }
+      //}
       showPoem = true;
       let textContainer = select('#poem');
       if(textContainer) {
