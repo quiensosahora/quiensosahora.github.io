@@ -152,8 +152,9 @@ function drawText() {
       var metadataToShow = poem[i][randomMetadataKey];
 
       // Crea un elemento de párrafo
-      var paragraph = createP(phraseToShow);
+      var paragraph = createDiv(phraseToShow);
 
+      paragraph.class('line-background');
       paragraph.attribute('metadata-text', metadataToShow);
       paragraph.attribute('phrase-text', phraseToShow);
 
@@ -172,6 +173,9 @@ function drawText() {
 
       // Agrega el párrafo al contenedor
       paragraph.parent('poem');
+
+      // Agrega un salto de línea después del párrafo
+      createElement('br').parent('poem');
     }
   }
 }

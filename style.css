@@ -271,3 +271,11 @@ canvas {
   background-color: rgba(166, 24, 248, 0.7) !important;
 }
 
+.line-background {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semitransparente */
+  color: white; /* Color del texto */
+  padding: 5px; /* Espacio interno */
+  border-radius: 3px; /* Bordes redondeados */
+  display: inline-block; /* Comportamiento de bloque en línea */
+  margin-bottom: 5px; /* Espaciado entre líneas */
+}
