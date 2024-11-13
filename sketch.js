@@ -144,9 +144,8 @@ function drawText() {
 
     if(phraseToShow.trim() === 'quien sos ahora') {
       let poemDiv = select('#poem');
-      let link = '<a href="https://bit.ly/quiensosahora-telegram" target="_blank">¿quién sos ahora?</a>';
+      let link = '<a href="https://bit.ly/quiensosahora-telegram" target="_blank" class="line-background">¿quién sos ahora?</a>';
       poemDiv.html(link);
-      createElement('br').parent('poem');
     } else {
       var metadataOptions = ['location', 'device', 'os'];
       var randomMetadataKey = random(metadataOptions);
@@ -155,7 +154,7 @@ function drawText() {
       // Crea un elemento de párrafo
       var paragraph = createDiv(phraseToShow);
 
-      paragraph.class('line-background');
+      paragraph.class('line-background clickable');
       paragraph.attribute('metadata-text', metadataToShow);
       paragraph.attribute('phrase-text', phraseToShow);
 
@@ -170,6 +169,14 @@ function drawText() {
         } else {
           this.html(alternateText);
         }
+
+        // Aplica la clase "clicked" al elemento para el efecto de transición
+        this.addClass('text-clicked'); // Usamos addClass() de p5.js
+
+        // Después de 300ms (el tiempo de la transición), podemos eliminar la clase
+        setTimeout(() => {
+          this.removeClass('text-clicked'); // Usamos removeClass() de p5.js
+        }, 300);
       });
 
       // Agrega el párrafo al contenedor

@@ -279,3 +279,14 @@ canvas {
   display: inline-block; /* Comportamiento de bloque en línea */
   margin-bottom: 5px; /* Espaciado entre líneas */
 }
+
+.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transición suave para todos los cambios */
+}
+
+.text-clicked {
+  background-color: #ed43d9;
+  transform: translateX(20px); 
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+}
