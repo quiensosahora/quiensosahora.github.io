@@ -141,25 +141,23 @@ function drawText() {
 
   for (var i = 0; i < poem.length; i++) {
     let phraseToShow = poem[i].phrase;
-
     if(phraseToShow.trim() === 'quien sos ahora') {
-      let poemDiv = select('#poem');
       let link = '<a href="https://bit.ly/quiensosahora-telegram" target="_blank" class="line-background">¿quién sos ahora?</a>';
-      poemDiv.html(link);
+      let textLine = createDiv(link);
+       // Agrega el texto al contenedor
+      textLine.parent('poem');
     } else {
       var metadataOptions = ['location', 'device', 'os'];
       var randomMetadataKey = random(metadataOptions);
       var metadataToShow = poem[i][randomMetadataKey];
 
-      // Crea un elemento de párrafo
-      var paragraph = createDiv(phraseToShow);
-
-      paragraph.class('line-background clickable');
-      paragraph.attribute('metadata-text', metadataToShow);
-      paragraph.attribute('phrase-text', phraseToShow);
+      let textLine = createDiv(phraseToShow);
+      textLine.class('line-background clickable');
+      textLine.attribute('metadata-text', metadataToShow);
+      textLine.attribute('phrase-text', phraseToShow);
 
       // Agrega un event listener para alternar el texto al hacer clic
-      paragraph.mousePressed(function() {
+      textLine.mousePressed(function() {
         var currentText = this.html();
         var originalText = this.attribute('phrase-text');
         var alternateText = this.attribute('metadata-text');
@@ -179,11 +177,11 @@ function drawText() {
         }, 300);
       });
 
-      // Agrega el párrafo al contenedor
-      paragraph.parent('poem');
+       // Agrega el texto al contenedor
+      textLine.parent('poem');
+      // Agrega un salto de línea después del texto
+      createElement('br').parent('poem');
     }
-    // Agrega un salto de línea después del párrafo
-    createElement('br').parent('poem');
   }
 }
 
