@@ -156,7 +156,7 @@ function drawText() {
       textLine.attribute('metadata-text', metadataToShow);
       textLine.attribute('phrase-text', phraseToShow);
 
-      // Agrega un event listener para alternar el texto al hacer clic
+      // Agrega un event listener para alternar el texto al hacer click
       textLine.mousePressed(function() {
         var currentText = this.html();
         var originalText = this.attribute('phrase-text');
@@ -169,11 +169,10 @@ function drawText() {
         }
 
         // Aplica la clase "clicked" al elemento para el efecto de transición
-        this.addClass('text-clicked'); // Usamos addClass() de p5.js
-
-        // Después de 300ms (el tiempo de la transición), podemos eliminar la clase
+        this.addClass('text-clicked'); 
+        // Después de 300ms se elimina la clase
         setTimeout(() => {
-          this.removeClass('text-clicked'); // Usamos removeClass() de p5.js
+          this.removeClass('text-clicked'); 
         }, 300);
       });
 
