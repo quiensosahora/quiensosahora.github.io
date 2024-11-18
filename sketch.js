@@ -34,10 +34,13 @@ function setup() {
 	glitch = new Glitch();
 
   configureEvents();
-  showModalContent();
+  getQueryParam();
+  if(!demoParam) {
+    showModalContent();
+  }
   getDevice();
   createPixels();
-  getQueryParam();
+  
   configureEasterEgg();
 
   lastInteractionTime = millis();
