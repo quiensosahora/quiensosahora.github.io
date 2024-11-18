@@ -40,7 +40,6 @@ function setup() {
   }
   getDevice();
   createPixels();
-  
   configureEasterEgg();
 
   lastInteractionTime = millis();
@@ -116,6 +115,7 @@ function draw() {
     drawText();
   }
 
+  console.log(showPixels);
   if(showPixels) {
     drawPixels(blackBox);
   }
@@ -217,15 +217,16 @@ function configureEasterEgg() {
 }
 
 function showDemo() {
-  var demoOptions = ['text', 'add', 'camera'];
-  var demoSelected = random(demoOptions);
-  if(demoSelected === 'text') {
+  
+  addButtonClicked();
+
+  if(showPoem) {
     seePoemButtonClicked();
-  } else if(demoSelected === 'add') {
-    addButtonClicked();
+    seePoemButtonClicked();
   } else {
-    changeCameraClicked();
+    seePoemButtonClicked();
   }
+  
   demo = false;
 }
 
