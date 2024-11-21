@@ -8,7 +8,7 @@ let thief, centerX, centerY, sizeClue, halfSize;
 let opacity;
 let pixels = [];
 let lastInteractionTime;
-const idleTimeLimit = 180000; // Cada 3 minutos de inactividad la web realiza una "demo"
+const idleTimeLimit = 300000; // Cada 5 minutos de inactividad la web realiza una "demo"
 
 function preload() {
   thief = loadImage("assets/images/thief.png");
